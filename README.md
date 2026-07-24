@@ -1,4 +1,4 @@
-# audiolounge-site v4.1
+# audiolounge-site v4
 
 Static website for https://audiolounge.app.
 
@@ -32,3 +32,18 @@ Deploy the repository root as static assets. No build command is required.
 ## v4.1
 
 The Queue and Audio Path screenshots use equal 8:5 display frames. Original PNG files are unchanged; matching is handled only through CSS.
+
+
+## SEO and AI discovery
+
+Added without redesigning the existing homepage:
+
+- SoftwareApplication and WebSite JSON-LD
+- FAQ page and FAQPage JSON-LD
+- `llms.txt` and `llms-full.txt`
+- richer Open Graph and Twitter metadata
+- enhanced sitemap and robots directives
+- web app manifest and security contact
+- breadcrumb structured data on Support and Privacy
+
+After deployment, submit `https://audiolounge.app/sitemap.xml` to Google Search Console and Bing Webmaster Tools.
