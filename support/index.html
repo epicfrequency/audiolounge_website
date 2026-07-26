@@ -1,38 +1,79 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="robots" content="index,follow,max-snippet:-1">
-  <meta name="description" content="Support for Audio Lounge on macOS, including libraries, metadata, USB DACs, purchases, DSD, DoP, and playback troubleshooting.">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Contact Audio Lounge support for help, bug reports, and feature suggestions.">
+  <meta name="theme-color" content="#f5f5f7">
+  <meta name="robots" content="index,follow">
   <link rel="canonical" href="https://audiolounge.app/support/">
   <link rel="icon" type="image/png" href="../assets/app-icon.png">
-  <title>Audio Lounge Support</title>
+  <link rel="apple-touch-icon" href="../assets/app-icon.png">
+  <meta property="og:title" content="Support — Audio Lounge">
+  <meta property="og:description" content="Get help with Audio Lounge, report a bug, or share a suggestion.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://audiolounge.app/support/">
+  <meta property="og:image" content="https://audiolounge.app/assets/hero-library.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <title>Support — Audio Lounge</title>
   <link rel="stylesheet" href="../css/style.css">
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Audio Lounge","item":"https://audiolounge.app/"},{"@type":"ListItem","position":2,"name":"Support","item":"https://audiolounge.app/support/"}]}</script>
 </head>
 <body>
-  <header class="site-header"><div class="container navbar">
-    <a class="brand" href="../"><img src="../assets/app-icon.png" alt=""><span>Audio Lounge</span></a>
-    <nav class="navlinks"><a href="../">Overview</a><a href="../faq/>FAQ</a>
-        <a href="../privacy/>Privacy Policy</a></nav>
-    <a class="store-button" href="https://apps.apple.com/us/app/audio-lounge/id6767935421?mt=12" target="_blank" rel="noopener">Mac App Store</a>
-  </div></header>
-  <main class="page-shell">
-    <p class="eyebrow">Support</p>
-    <h1>How can we help?</h1>
-    <p class="page-intro">Audio Lounge is designed to feel simple. When something needs attention, the information below should help you get back to listening quickly.</p>
-    <div class="help-grid">
-      <article class="help-card"><h3>Library</h3><p>Keep external drives and network shares mounted before rescanning. Confirm Audio Lounge has permission to read the selected folder.</p></article>
-      <article class="help-card"><h3>Artwork & metadata</h3><p>Audio Lounge reads artwork and tags from your local files. Rescan after making changes in another tagging application.</p></article>
-      <article class="help-card"><h3>USB DAC</h3><p>Connect and power on the DAC before selecting it. For DoP, confirm that the device supports the requested DSD rate.</p></article>
-      <article class="help-card"><h3>Purchases</h3><p>Lifetime access follows the Apple Account used for purchase. Use Restore Purchases after reinstalling or moving to another Mac.</p></article>
+  <header class="site-header">
+    <div class="container navbar">
+      <a class="brand" href="../" aria-label="Audio Lounge home"><img src="../assets/app-icon.png" alt=""><span>Audio Lounge</span></a>
+      <nav class="navlinks" aria-label="Primary navigation">
+        <a href="../blog/">Blog</a>
+        <a href="../faq/">FAQ</a>
+        <a href="../support/" aria-current="page">Support</a>
+      </nav>
+      <a class="store-button" href="https://apps.apple.com/us/app/audio-lounge/id6767935421?mt=12" target="_blank" rel="noopener">Mac App Store</a>
     </div>
-    <h2>Before contacting support</h2>
-    <ul><li>Update Audio Lounge and macOS.</li><li>Reconnect external drives or USB devices.</li><li>Try a second album or file.</li><li>Note the source format, sample rate, output device, and playback path.</li></ul>
-    <div class="contact-panel"><h2>Contact support</h2><p>Include your macOS version, Audio Lounge version, Mac model, output device, and a short description. Screenshots are welcome.</p><p><a href="mailto:support@audiolounge.app">support@audiolounge.app</a></p></div>
+  </header>
+
+  <main class="support-page">
+    <section class="support-hero container">
+      <p class="eyebrow">Support</p>
+      <h1>We're here<br>to help.</h1>
+      <p class="page-intro">Found a bug, have a question, or want to suggest an improvement? Send a note and include as much detail as you can.</p>
+    </section>
+
+    <section class="container support-contact">
+      <div class="support-primary-card">
+        <p class="kicker">Email</p>
+        <h2><a href="mailto:support@audiolounge.app">support@audiolounge.app</a></h2>
+        <p>Messages are typically answered within 1–2 business days.</p>
+      </div>
+
+      <div class="support-notes">
+        <article>
+          <h3>Reporting a bug</h3>
+          <p>Please include your macOS version, Audio Lounge version, Mac model, output device, and the steps that led to the issue. Screenshots are welcome.</p>
+        </article>
+        <article>
+          <h3>Sharing an idea</h3>
+          <p>Feature suggestions are always welcome. A short description of how the idea would fit into your listening or library workflow is especially helpful.</p>
+        </article>
+      </div>
+
+      <div class="support-links">
+        <a href="../faq/">Browse the FAQ <span aria-hidden="true">→</span></a>
+        <a href="../privacy/">Read the Privacy Policy <span aria-hidden="true">→</span></a>
+      </div>
+    </section>
   </main>
-  <footer class="site-footer"><div class="container footer-row"><div>© <span data-year></span> Audio Lounge.</div><div class="footer-links"><a href="../">Home</a><a href="../faq/>FAQ</a>
-        <a href="../privacy/>Privacy Policy</a></div></div></footer>
+
+  <footer class="site-footer">
+    <div class="container footer-row">
+      <div>© <span data-year></span> Audio Lounge. Crafted for macOS.</div>
+      <div class="footer-links">
+        <a href="../blog/">Blog</a>
+        <a href="../faq/">FAQ</a>
+        <a href="../support/">Support</a>
+        <a href="../privacy/">Privacy</a>
+      </div>
+    </div>
+  </footer>
   <script src="../js/main.js"></script>
 </body>
 </html>

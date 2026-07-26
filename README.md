@@ -1,4 +1,4 @@
-# audiolounge-site v4
+# Audio Lounge website
 
 Static website for https://audiolounge.app.
 
@@ -15,35 +15,30 @@ Then open http://localhost:8000.
 ## Production routes
 
 - `/`
+- `/blog/`
+- `/blog/why-i-built-audio-lounge/`
 - `/support/`
 - `/privacy/`
 
-The root also contains `support.html` and `privacy.html` so local double-click preview works correctly.
+Root-level HTML copies are included for convenient local preview.
+
+## Blog
+
+The first post is **Why I Built Audio Lounge**. To add another post:
+
+1. Create a root HTML page for local preview.
+2. Create a matching clean-route folder under `/blog/`.
+3. Add the post to `blog.html`, `/blog/index.html`, `feed.xml`, and `sitemap.xml`.
+4. Add `BlogPosting` JSON-LD and a canonical URL.
 
 ## Images
 
-All product screenshots and the app icon are the original PNG files supplied by the product owner. They are copied byte-for-byte and are not converted or recompressed.
+All product screenshots and the app icon are the original PNG assets. They are copied byte-for-byte and are not converted or recompressed.
 
 ## Cloudflare
 
 Deploy the repository root as static assets. No build command is required.
 
-
-## v4.1
-
-The Queue and Audio Path screenshots use equal 8:5 display frames. Original PNG files are unchanged; matching is handled only through CSS.
-
-
-## SEO and AI discovery
-
-Added without redesigning the existing homepage:
-
-- SoftwareApplication and WebSite JSON-LD
-- FAQ page and FAQPage JSON-LD
-- `llms.txt` and `llms-full.txt`
-- richer Open Graph and Twitter metadata
-- enhanced sitemap and robots directives
-- web app manifest and security contact
-- breadcrumb structured data on Support and Privacy
-
-After deployment, submit `https://audiolounge.app/sitemap.xml` to Google Search Console and Bing Webmaster Tools.
+```bash
+npx wrangler deploy
+```
