@@ -26,6 +26,3 @@ User-agent: *
 Allow: /
 
 Sitemap: https://audiolounge.app/sitemap.xml
-
-User-agent: *
-Disallow: /download/
