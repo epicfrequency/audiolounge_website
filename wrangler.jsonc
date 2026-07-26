@@ -3,11 +3,5 @@
   "compatibility_date": "2026-07-24",
   "assets": {
     "directory": "."
-  },
-  "analytics_engine_datasets": [
-    {
-      "binding": "DOWNLOAD_ANALYTICS",
-      "dataset": "audio_lounge_downloads"
-    }
-  ]
+  }
 }
