@@ -1,136 +1,39 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="description" content="Answers to common questions about Audio Lounge for macOS, including local music libraries, external drives, NAS, playback formats, DSD, SACD ISO, and purchasing.">
-  <meta name="theme-color" content="#f5f5f7">
-  <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1">
-  <link rel="canonical" href="https://audiolounge.app/faq/">
-  <link rel="icon" type="image/png" href="assets/app-icon.png">
-  <link rel="apple-touch-icon" href="assets/app-icon.png">
-  <meta property="og:title" content="Audio Lounge FAQ">
-  <meta property="og:description" content="Answers to common product and playback questions about Audio Lounge for macOS.">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://audiolounge.app/faq/">
-  <meta property="og:image" content="https://audiolounge.app/assets/hero-library.png">
-  <meta name="twitter:card" content="summary_large_image">
-  <title>FAQ — Audio Lounge</title>
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is Audio Lounge?","acceptedAnswer":{"@type":"Answer","text":"Audio Lounge is a native music player for macOS, designed for people who own and care about their music collections."}},{"@type":"Question","name":"Who is Audio Lounge for?","acceptedAnswer":{"@type":"Answer","text":"Audio Lounge is for people who keep a personal music library and want a calm, native macOS experience for browsing and listening."}},{"@type":"Question","name":"Does Audio Lounge require a subscription?","acceptedAnswer":{"@type":"Answer","text":"No. Audio Lounge offers a free starting experience, and a one-time purchase unlocks unlimited playback. There is no subscription."}},{"@type":"Question","name":"Where can my music be stored?","acceptedAnswer":{"@type":"Answer","text":"Audio Lounge can use music stored on your Mac, external drives, and network volumes that are already mounted in macOS."}},{"@type":"Question","name":"Can Audio Lounge handle large music collections?","acceptedAnswer":{"@type":"Answer","text":"Yes. Audio Lounge is designed to browse, search, and manage large local libraries smoothly."}},{"@type":"Question","name":"Can I use music on an external drive?","acceptedAnswer":{"@type":"Answer","text":"Yes. Add music from an external drive that is connected and available in macOS."}},{"@type":"Question","name":"Can I use music stored on a NAS?","acceptedAnswer":{"@type":"Answer","text":"Yes, when the NAS share is already mounted in macOS as a network volume. Audio Lounge does not mount or configure the NAS itself."}},{"@type":"Question","name":"Does Audio Lounge modify my music files?","acceptedAnswer":{"@type":"Answer","text":"Audio Lounge is designed to leave your music files in place. It builds its own library view around the files and locations you choose."}},{"@type":"Question","name":"Which audio formats are supported?","acceptedAnswer":{"@type":"Answer","text":"Audio Lounge supports FLAC, ALAC, WAV, AIFF, APE, WavPack, AAC, MP3, CUE, DSF, DFF, and SACD ISO."}},{"@type":"Question","name":"Does Audio Lounge support DSD?","acceptedAnswer":{"@type":"Answer","text":"Yes. Audio Lounge supports DSF and DFF, including DST, along with DoP output for compatible DACs and high-quality DSD-to-PCM conversion."}},{"@type":"Question","name":"Does Audio Lounge support SACD ISO?","acceptedAnswer":{"@type":"Answer","text":"Yes. Audio Lounge can browse and play supported SACD ISO content."}},{"@type":"Question","name":"Does Audio Lounge support gapless playback?","acceptedAnswer":{"@type":"Answer","text":"Yes. Audio Lounge supports gapless playback across compatible tracks."}},{"@type":"Question","name":"Does Audio Lounge support bit-perfect playback?","acceptedAnswer":{"@type":"Answer","text":"Yes, on supported hardware and output configurations. Audio Lounge also supports automatic sample-rate matching."}},{"@type":"Question","name":"What is the Transparent Audio Path?","acceptedAnswer":{"@type":"Answer","text":"The Transparent Audio Path shows the source format, decoding path, output device, and final sample rate in real time."}}]}</script>
-  <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-  <header class="site-header">
-    <div class="container navbar">
-      <a class="brand" href="index.html" aria-label="Audio Lounge home"><img src="assets/app-icon.png" alt=""><span>Audio Lounge</span></a>
-      <nav class="navlinks" aria-label="Primary navigation">
-        <a href="faq.html" aria-current="page">FAQ</a>
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Audio Lounge FAQ: library organization, SMB Direct, HALO, formats and technical playback details."><link rel="canonical" href="https://audiolounge.app/faq/"><link rel="icon" href="assets/app-icon.png"><title>FAQ — Audio Lounge</title><link rel="stylesheet" href="css/style.css"></head><body>
+<header class="site-header"><div class="container navbar"><a class="brand" href="/"><img src="assets/app-icon.png" alt=""><span>Audio Lounge</span></a><nav class="navlinks" aria-label="Primary navigation"><a href="/">Audio Lounge</a><a href="/halo/">HALO</a><a href="/blog/">Blog</a><a href="/help/">Help</a></nav><a class="store-button" href="/download/">Download</a></div></header>
+<main class="faq-page"><section class="faq-hero container"><p class="eyebrow">Audio Lounge FAQ</p><h1>Questions,<br>answered plainly.</h1><p class="page-intro">Practical answers about the library, SMB Direct, HALO, formats, and the playback path.</p></section>
+<div class="faq-layout container"><aside class="faq-toc"><p class="kicker">On this page</p><a href="#general">General</a><a href="#library">Library</a><a href="#smb-technical">SMB Direct</a><a href="#halo-tech">HALO</a><a href="#technical">Technical</a></aside>
+<div class="faq-content">
+<section class="faq-section" id="general"><p class="kicker">General</p>
+<article class="faq-answer"><h2>What is Audio Lounge?</h2><p>An elegant music player for people who own and care about their music. Audio Lounge 1.1 is available on Mac; Audio Lounge Air for iPad is coming soon.</p></article>
+<article class="faq-answer"><h2>Is Audio Lounge Air a Mac remote?</h2><p>No. It is the iPadOS edition of Audio Lounge, with its own library and playback experience.</p></article>
+<article class="faq-answer"><h2>Is there a subscription?</h2><p>No. Start free; a one-time purchase unlocks unlimited playback.</p></article></section>
 
-        <a href="support.html">Support</a>
+<section class="faq-section faq-section-title" id="library"><p class="kicker">Library organization</p>
+<article class="faq-answer"><h2>How are album and artist counts calculated?</h2><p>Counts reflect Audio Lounge’s organized library view rather than a simple raw-file count. Tracks that belong to one grouped release are counted as that release, so the number can differ from the number of folders or files on disk.</p></article>
+<article class="faq-answer"><h2>How are multi-disc releases handled?</h2><p>Discs that belong to the same release are grouped into one album when the available metadata identifies them as one release.</p></article>
+<article class="faq-answer"><h2>What happens to loose tracks in one folder?</h2><p>Loose tracks that belong together can be grouped as one album/library item rather than creating unnecessary separate entries.</p></article>
+<article class="faq-answer"><h2>Does Audio Lounge modify my music files?</h2><p>No. Audio Lounge builds its library view around the locations you choose and leaves the original music files in place.</p></article></section>
 
-        <a href="blog.html">Blog</a>
-      </nav>
-      <a class="store-button" href="/download/" target="_blank" rel="noopener">Mac App Store</a>
-    </div>
-  </header>
+<section class="faq-section faq-section-title" id="smb-technical"><p class="kicker">SMB Direct</p>
+<article class="faq-answer"><h2>Does SMB Direct require Finder or Files app mounting?</h2><p>No. Audio Lounge connects directly to the SMB share.</p></article>
+<article class="faq-answer"><h2>What is the difference between Share and Folder inside share?</h2><p>The Share is the SMB resource exported by the NAS, such as <code>Music</code>. Folder inside share is an optional subfolder within it, such as <code>Classical</code>.</p></article>
+<article class="faq-answer"><h2>What should I enter for Domain?</h2><p>Most home NAS users should leave Domain blank. Enter it only when the SMB server or managed network specifically requires one.</p></article>
+<article class="faq-answer"><h2>What happens if the NAS is temporarily offline?</h2><p>The library location becomes unavailable until the share is reachable again; Audio Lounge does not move the source library to its own cloud service.</p></article>
+<article class="faq-answer"><h2>Where is the setup guide?</h2><p><a class="text-link" href="/smb/">Set up SMB Direct →</a></p></article></section>
 
-  <main class="faq-page">
-    <section class="faq-hero container">
-      <p class="eyebrow">Audio Lounge FAQ</p>
-      <h1>Questions,<br>answered plainly.</h1>
-      <p class="page-intro">Practical answers about your library, storage, formats, and playback.</p>
-    </section>
+<section class="faq-section faq-section-title" id="halo-tech"><p class="kicker">HALO Network Audio</p>
+<article class="faq-answer"><h2>Does HALO require a server or core?</h2><p>No. Audio Lounge remains the player. HALO Endpoint is a lightweight output endpoint.</p></article>
+<article class="faq-answer"><h2>Which endpoint platforms are supported?</h2><p>64-bit Linux on ARM64 and x86-64. DietPi, Raspberry Pi OS 64-bit and Ubuntu are the recommended platforms.</p></article>
+<article class="faq-answer"><h2>What stays in Audio Lounge?</h2><p>The library, queue, decoding, optional PCM upsampling and DoP preparation stay on the Audio Lounge side. HALO extends the resulting audio path to the DAC.</p></article>
+<article class="faq-answer"><h2>Does HALO change the Mac’s normal system output?</h2><p>No. HALO is selected inside Audio Lounge, so the normal system output can remain assigned to another device.</p></article>
+<article class="faq-answer"><h2>Where is the installation guide?</h2><p><a class="text-link" href="/halo/#setup">Set up a HALO Endpoint →</a></p></article></section>
 
-    <div class="faq-layout container">
-      <aside class="faq-toc">
-        <p class="kicker">On this page</p>
-        <a href="#what-is-audio-lounge">Getting Started</a>
-        <a href="#where-can-my-music-be-stored">Your Music Library</a>
-        <a href="#which-audio-formats-are-supported">Playback</a>
-      </aside>
-      <div class="faq-content">
-      <section class="faq-section">
-        <p class="kicker">Getting Started</p>
-        <article class="faq-answer" id="what-is-audio-lounge">
-          <h2>What is Audio Lounge?</h2>
-          <p>Audio Lounge is a native music player for macOS, designed for people who own and care about their music collections.</p>
-        </article>
-        <article class="faq-answer" id="who-is-audio-lounge-for">
-          <h2>Who is Audio Lounge for?</h2>
-          <p>Audio Lounge is for people who keep a personal music library and want a calm, native macOS experience for browsing and listening.</p>
-        </article>
-        <article class="faq-answer" id="does-audio-lounge-require-a-subscription">
-          <h2>Does Audio Lounge require a subscription?</h2>
-          <p>No. Audio Lounge offers a free starting experience, and a one-time purchase unlocks unlimited playback. There is no subscription.</p>
-        </article>
-      </section>
-      <section class="faq-section">
-        <p class="kicker">Your Music Library</p>
-        <article class="faq-answer" id="where-can-my-music-be-stored">
-          <h2>Where can my music be stored?</h2>
-          <p>Audio Lounge can use music stored on your Mac, external drives, and network volumes that are already mounted in macOS.</p>
-        </article>
-        <article class="faq-answer" id="can-audio-lounge-handle-large-music-collections">
-          <h2>Can Audio Lounge handle large music collections?</h2>
-          <p>Yes. Audio Lounge is designed to browse, search, and manage large local libraries smoothly.</p>
-        </article>
-        <article class="faq-answer" id="can-i-use-music-on-an-external-drive">
-          <h2>Can I use music on an external drive?</h2>
-          <p>Yes. Add music from an external drive that is connected and available in macOS.</p>
-        </article>
-        <article class="faq-answer" id="can-i-use-music-stored-on-a-nas">
-          <h2>Can I use music stored on a NAS?</h2>
-          <p>Yes, when the NAS share is already mounted in macOS as a network volume. Audio Lounge does not mount or configure the NAS itself.</p>
-        </article>
-        <article class="faq-answer" id="does-audio-lounge-modify-my-music-files">
-          <h2>Does Audio Lounge modify my music files?</h2>
-          <p>Audio Lounge is designed to leave your music files in place. It builds its own library view around the files and locations you choose.</p>
-        </article>
-      </section>
-      <section class="faq-section">
-        <p class="kicker">Playback</p>
-        <article class="faq-answer" id="which-audio-formats-are-supported">
-          <h2>Which audio formats are supported?</h2>
-          <p>Audio Lounge supports FLAC, ALAC, WAV, AIFF, APE, WavPack, AAC, MP3, CUE, DSF, DFF, and SACD ISO.</p>
-        </article>
-        <article class="faq-answer" id="does-audio-lounge-support-dsd">
-          <h2>Does Audio Lounge support DSD?</h2>
-          <p>Yes. Audio Lounge supports DSF and DFF, including DST, along with DoP output for compatible DACs and high-quality DSD-to-PCM conversion.</p>
-        </article>
-        <article class="faq-answer" id="does-audio-lounge-support-sacd-iso">
-          <h2>Does Audio Lounge support SACD ISO?</h2>
-          <p>Yes. Audio Lounge can browse and play supported SACD ISO content.</p>
-        </article>
-        <article class="faq-answer" id="does-audio-lounge-support-gapless-playback">
-          <h2>Does Audio Lounge support gapless playback?</h2>
-          <p>Yes. Audio Lounge supports gapless playback across compatible tracks.</p>
-        </article>
-        <article class="faq-answer" id="does-audio-lounge-support-bit-perfect-playback">
-          <h2>Does Audio Lounge support bit-perfect playback?</h2>
-          <p>Yes, on supported hardware and output configurations. Audio Lounge also supports automatic sample-rate matching.</p>
-        </article>
-        <article class="faq-answer" id="what-is-the-transparent-audio-path">
-          <h2>What is the Transparent Audio Path?</h2>
-          <p>The Transparent Audio Path shows the source format, decoding path, output device, and final sample rate in real time.</p>
-        </article>
-      </section>
-      </div>
-    </div>
-  </main>
-
-  <footer class="site-footer">
-    <div class="container footer-row">
-      <div>© <span data-year></span> Audio Lounge. Crafted for macOS.</div>
-      <div class="footer-links">
-        <a href="faq.html">FAQ</a>
-
-        <a href="support.html">Support</a>
-
-        <a href="blog.html">Blog</a>
-        <a href="privacy.html">Privacy</a>
-      </div>
-    </div>
-  </footer>
-  <script src="js/main.js"></script>
-</body>
-</html>
+<section class="faq-section faq-section-title" id="technical"><p class="kicker">Technical</p>
+<article class="faq-answer"><h2>Which formats are supported?</h2><p>FLAC, ALAC, WAV, AIFF, APE, WavPack, AAC, MP3, CUE, DSF, DFF and SACD ISO.</p></article>
+<article class="faq-answer"><h2>What does bit-perfect mean in Audio Lounge?</h2><p>On supported hardware and output configurations, Audio Lounge can send the decoded audio without sample-rate conversion or other processing. Enabling optional processing such as PCM upsampling intentionally changes that path.</p></article>
+<article class="faq-answer"><h2>Does Audio Lounge switch sample rate automatically?</h2><p>Yes, on supported output paths and devices, Audio Lounge can match the hardware sample rate to the source.</p></article>
+<article class="faq-answer"><h2>How are DSD and DoP handled?</h2><p>Audio Lounge supports DSF/DFF and SACD ISO. Compatible USB DACs can receive DSD using DoP; DSD-to-PCM conversion is also available where appropriate.</p></article>
+<article class="faq-answer"><h2>Does Audio Lounge support PCM upsampling?</h2><p>Yes. PCM upsampling is optional; when enabled, the Transparent Audio Path shows the resulting output format and sample rate.</p></article>
+<article class="faq-answer"><h2>Does Audio Lounge support gapless playback?</h2><p>Yes, for compatible tracks and formats.</p></article>
+<article class="faq-answer"><h2>What is Transparent Audio Path?</h2><p>It shows the source format, playback/processing path, selected output and final sample rate in real time, including HALO when used.</p></article></section>
+</div></div></main><footer class="site-footer"><div class="container footer-row"><div>© <span data-year></span> Audio Lounge.</div><div class="footer-links"><a href="/privacy/">Privacy</a></div></div></footer><script src="js/main.js"></script></body></html>

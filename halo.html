@@ -1,0 +1,186 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="HALO Network Audio — an elegant network audio solution for Audio Lounge, with setup for DietPi, Raspberry Pi OS and Ubuntu.">
+<link rel="canonical" href="https://audiolounge.app/halo/"><link rel="icon" href="assets/app-icon.png"><title>HALO Network Audio — Audio Lounge</title><link rel="stylesheet" href="css/style.css"></head><body>
+<header class="site-header"><div class="container navbar"><a class="brand" href="/"><img src="assets/app-icon.png" alt=""><span>Audio Lounge</span></a><nav class="navlinks" aria-label="Primary navigation"><a href="/">Audio Lounge</a><a href="/halo/">HALO</a><a href="/blog/">Blog</a><a href="/help/">Help</a></nav><a class="store-button" href="/download/">Download</a></div></header>
+<main><section class="hero container guide-hero">
+      <p class="eyebrow">HALO — Hi-Res Audio Loop Output</p>
+      <h1>Your Audio Lounge.<br>Your DAC. Anywhere in the room.</h1>
+      <p class="hero-copy">HALO stands for <strong>Hi-Res Audio Loop Output</strong>. It is Audio Lounge’s own network audio path: high-resolution playback from Mac or iPad to a lightweight Linux endpoint connected to your USB DAC.</p>
+      <div class="actions"><a class="button button-primary" href="#setup">Set up HALO</a></div>
+    </section>
+<section class="halo-explainer">
+  <div class="container">
+    <div class="section-copy">
+      <p class="kicker">What is HALO?</p>
+      <h2>A network audio path built around Audio Lounge.</h2><p class="lede"><strong>HALO stands for Hi-Res Audio Loop Output.</strong></p>
+      <p class="lede">HALO lets Audio Lounge on Mac or iPad send the prepared high-resolution audio stream over your local network to a HALO Endpoint beside your USB DAC.</p>
+    </div>
+
+    <div class="halo-definition">
+      <strong>Think of HALO as a long virtual USB audio cable.</strong>
+      <p>Audio Lounge still does the listening work—library, queue, decoding, optional upsampling, DoP preparation, and playback control. HALO carries that prepared audio path across the network. The Endpoint simply presents it to the DAC.</p>
+    </div>
+
+    <div class="halo-explainer-grid">
+      <div class="halo-explainer-card">
+        <h3>1. Audio Lounge prepares the audio.</h3>
+        <p>PCM, DSD/DoP, optional PCM upsampling, and the selected playback path stay under Audio Lounge control.</p>
+      </div>
+      <div class="halo-explainer-card">
+        <h3>2. HALO carries it over your LAN.</h3>
+        <p>No second library, no separate Core, and no other player taking ownership of the session.</p>
+      </div>
+      <div class="halo-explainer-card">
+        <h3>3. The Endpoint feeds the USB DAC.</h3>
+        <p>A lightweight 64-bit Linux endpoint sits beside the Hi‑Fi and outputs to the selected ALSA hardware device.</p>
+      </div>
+    </div>
+
+    <figure class="product-visual" style="max-width:1180px;margin:58px auto 0">
+      <img src="assets/mac-halo-settings.jpg" alt="HALO Network Transport settings in Audio Lounge">
+      <figcaption>HALO is configured inside Audio Lounge itself—including endpoint selection, buffer, DSD mode, and HALO upsampling.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section class="section dark"><div class="container center"><div class="section-copy"><p class="kicker">Simple by design</p><h2>Audio Lounge remains the player.</h2>
+<p class="lede">No server. No core. No separate remote. HALO simply extends the Audio Lounge audio path to the DAC.</p></div>
+<div class="path-row"><div class="path-box"><strong>Audio Lounge</strong><span>Mac / iPad</span></div><div class="path-arrow">→</div><div class="path-box"><strong>HALO Endpoint</strong><span>Local network</span></div><div class="path-arrow">→</div><div class="path-box"><strong>USB DAC</strong><span>Your Hi‑Fi</span></div></div><div class="halo-platforms halo-platform-showcase">
+  <h3>The same HALO path on Mac and iPad.</h3>
+  <p>Once HALO is selected, Now Playing shows the network route and final output format directly in Audio Lounge.</p>
+
+  <figure class="halo-platform-shot">
+    <img src="assets/mac-halo-now-playing.jpg" alt="Audio Lounge playing through HALO on Mac">
+    <figcaption>Audio Lounge for Mac → HALO</figcaption>
+  </figure>
+
+  <figure class="halo-platform-shot ipad">
+    <img src="assets/ipad-halo-now-playing.jpg" alt="Audio Lounge Air playing through HALO on iPad">
+    <figcaption>Audio Lounge Air for iPad → HALO</figcaption>
+  </figure>
+</div></div></section>
+
+<section id="setup" class="section"><div class="guide-shell"><p class="kicker">HALO Setup</p><h2>From a fresh endpoint<br>to music in a few minutes.</h2>
+<p class="guide-intro">Use a small 64-bit Linux computer beside your DAC. DietPi is the simplest dedicated option; Raspberry Pi OS 64-bit and Ubuntu are also supported.</p>
+<nav class="guide-nav"><a href="#prepare">1. Prepare</a><a href="#ssh">2. SSH</a><a href="#dac">3. Connect DAC</a><a href="#install">4. Install</a><a href="#listen">5. Listen</a><a href="#trouble">Troubleshooting</a></nav>
+
+<div class="guide-block" id="prepare">
+  <p class="kicker">Step 1</p>
+  <h2>Prepare the endpoint.</h2>
+  <p>A HALO Endpoint is the small Linux computer that will sit beside your USB DAC. Install a current 64-bit DietPi, Raspberry Pi OS, or Ubuntu image, power it on, and connect it to the same home network as your Mac or iPad. Ethernet is recommended for a fixed Hi‑Fi setup.</p>
+
+  <div class="setup-checklist">
+    <h3>Before going to Step 2, have these three things ready:</h3>
+    <ul>
+      <li><strong>The endpoint is powered on and connected to your network.</strong></li>
+      <li><strong>You know its login name.</strong> This is the username you created while preparing Linux. DietPi commonly uses the <code>root</code> account for setup.</li>
+      <li><strong>You know its password.</strong> Use the password you chose or configured for that Linux installation.</li>
+    </ul>
+  </div>
+
+  <p class="note"><strong>Raspberry Pi OS:</strong> if your image-writing tool offers an “Enable SSH” option, turn it on before writing the SD card. Also set a username and password you will remember.</p>
+</div>
+
+<div class="guide-block" id="ssh">
+  <p class="kicker">Step 2</p>
+  <h2>Connect to the endpoint with SSH.</h2>
+  <p class="guide-intro">SSH sounds technical, but here it simply means: <strong>use your Mac to type commands on the little Linux computer beside your DAC.</strong> The endpoint does not need its own keyboard, mouse, or monitor.</p>
+
+  <div class="beginner-steps">
+    <div class="beginner-step">
+      <h3>Open Terminal on your Mac.</h3>
+      <p>Press <strong>Command–Space</strong>, type <strong>Terminal</strong>, and press Return. You will see a window with a text prompt.</p>
+    </div>
+
+    <div class="beginner-step">
+      <h3>Enter the SSH command.</h3>
+      <p>Choose the example that matches your endpoint. Replace anything inside <code>&lt; &gt;</code> with your own information.</p>
+    </div>
+  </div>
+
+  <div class="command-choice">
+    <div class="command-card">
+      <h3>DietPi</h3>
+      <p>If the standard <code>dietpi.local</code> hostname works on your network:</p>
+      <pre class="codebox"><code>ssh root@dietpi.local</code></pre>
+    </div>
+    <div class="command-card">
+      <h3>Raspberry Pi OS</h3>
+      <p>Use the username you created when preparing the Pi:</p>
+      <pre class="codebox"><code>ssh &lt;your-user&gt;@raspberrypi.local</code></pre>
+    </div>
+    <div class="command-card">
+      <h3>Ubuntu</h3>
+      <p>Using the endpoint's IP address is usually the clearest option:</p>
+      <pre class="codebox"><code>ssh &lt;your-user&gt;@&lt;endpoint-ip&gt;</code></pre>
+    </div>
+  </div>
+
+  <div class="beginner-steps" style="counter-reset:beginner-step 2">
+    <div class="beginner-step">
+      <h3>On the first connection, type <code>yes</code>.</h3>
+      <p>SSH may say that the authenticity of the host cannot be established and ask whether you want to continue connecting. For your own newly prepared endpoint, type <code>yes</code> and press Return.</p>
+    </div>
+
+    <div class="beginner-step">
+      <h3>Enter the Linux password.</h3>
+      <p>When Terminal asks for the password, type it and press Return. <strong>Nothing will appear on the screen while you type—not even dots.</strong> That is normal for SSH.</p>
+    </div>
+
+    <div class="beginner-step">
+      <h3>Look for a new prompt.</h3>
+      <p>If the login worked, the prompt will change to something that belongs to the endpoint, such as <code>root@DietPi:~#</code>. You are now controlling the HALO Endpoint from your Mac and can continue to Step 3.</p>
+    </div>
+  </div>
+
+  <div class="ssh-success">
+    <strong>Success looks like this</strong>
+    <p>Your Terminal is still on the Mac, but the commands you type now run on the Linux endpoint. Leave this Terminal window open for the next steps.</p>
+  </div>
+
+  <h3 style="margin-top:42px">If <code>.local</code> does not work</h3>
+  <p>Find the endpoint's IP address in your router or Wi‑Fi app, then use the IP instead of the hostname. For example:</p>
+  <pre class="codebox"><code>ssh root@192.168.1.123</code></pre>
+  <p class="note">Your IP address will probably be different. Look for a device named <strong>dietpi</strong>, <strong>raspberrypi</strong>, or the hostname you chose when installing Linux.</p>
+
+  <h3 style="margin-top:42px">Common SSH errors</h3>
+  <table class="trouble-table">
+    <thead><tr><th>What Terminal says</th><th>What it usually means</th><th>What to do</th></tr></thead>
+    <tbody>
+      <tr><td><code>Could not resolve hostname</code></td><td>The <code>.local</code> name was not found.</td><td>Find the endpoint IP in your router and connect using the IP address.</td></tr>
+      <tr><td><code>Connection refused</code></td><td>The endpoint is reachable, but SSH is not running.</td><td>Enable SSH on the Linux image or endpoint, reboot it, and try again.</td></tr>
+      <tr><td><code>Permission denied</code></td><td>The username or password is wrong.</td><td>Check the login name and password you configured when preparing Linux.</td></tr>
+      <tr><td>The command hangs or times out</td><td>The Mac cannot reach the endpoint.</td><td>Confirm both devices are on the same home network and the endpoint is actually connected.</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="guide-block" id="dac"><p class="kicker">Step 3</p><h2>Connect your USB DAC.</h2><p>Power on the DAC and connect it to the endpoint. You can confirm Linux sees an ALSA playback device with:</p><pre class="codebox"><code>aplay -l</code></pre></div>
+
+<div class="guide-block" id="install"><p class="kicker">Step 4</p><h2>Install HALO Endpoint.</h2>
+<p>Keep the same SSH Terminal window open. Copy the command below, paste it into Terminal, and press Return. The installer will automatically choose the correct HALO binary for the endpoint, install what HALO needs, and start the service.</p>
+<p class="note">You do not need to download a file manually, compile source code, or install a development environment.</p>
+<h3>Raspberry Pi OS / Ubuntu</h3><pre class="codebox"><code>curl -fsSL https://audiolounge.app/halo/install.sh | sudo bash</code></pre>
+<h3>DietPi root shell</h3><pre class="codebox"><code>curl -fsSL https://audiolounge.app/halo/install.sh | bash</code></pre>
+<p>When prompted, choose the actual ALSA hardware device for your DAC, preferably a <code>hw:CARD,DEVICE</code> output.</p>
+<figure class="guide-screenshot"><img src="assets/mac-halo-settings.jpg" alt="HALO Network Transport settings in Audio Lounge"><figcaption>HALO settings remain inside Audio Lounge, including endpoint selection and playback options.</figcaption></figure></div>
+
+<div class="guide-block" id="listen"><p class="kicker">Step 5</p><h2>Open Audio Lounge and listen.</h2>
+<p>At this point you can leave Terminal alone and return to Audio Lounge.</p>
+<div class="beginner-steps">
+  <div class="beginner-step"><h3>Open Audio Lounge.</h3><p>Make sure the Mac or iPad is on the same local network as the HALO Endpoint.</p></div>
+  <div class="beginner-step"><h3>Open the Output selector.</h3><p>Choose the HALO Endpoint that Audio Lounge discovered on the network.</p></div>
+  <div class="beginner-step"><h3>Start playback.</h3><p>Audio Lounge continues to control the library and playback path; HALO sends that audio to the USB DAC beside your Hi‑Fi.</p></div>
+</div>
+</div>
+
+<div class="guide-block" id="trouble"><p class="kicker">Troubleshooting</p><h2>Quick checks.</h2>
+<h3>HALO service</h3><pre class="codebox"><code>systemctl status halo-daemon --no-pager
+journalctl -u halo-daemon -n 50 --no-pager</code></pre>
+<h3>Network discovery</h3><pre class="codebox"><code>systemctl status avahi-daemon
+avahi-browse -r _halo._tcp</code></pre>
+<p>Make sure Audio Lounge and HALO Endpoint are on the same LAN and that guest Wi‑Fi/client isolation is not enabled. On iPad, allow Audio Lounge access to the Local Network.</p></div>
+
+<div class="guide-block"><p>Curious why HALO exists? <a class="text-link" href="/blog/why-i-built-halo/">Read “Why I Built HALO” →</a></p></div>
+</div></section></main>
+<footer class="site-footer"><div class="container footer-row"><div>© <span data-year></span> Audio Lounge.</div><div class="footer-links"><a href="/faq/">FAQ</a><a href="/privacy/">Privacy</a></div></div></footer><script src="js/main.js"></script></body></html>

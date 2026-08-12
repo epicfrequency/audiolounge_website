@@ -1,0 +1,128 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="How to set up SMB Direct in Audio Lounge on Mac and iPad."><link rel="canonical" href="https://audiolounge.app/smb/"><link rel="icon" href="../assets/app-icon.png">
+<title>Set up SMB Direct — Audio Lounge</title><link rel="stylesheet" href="../css/style.css"></head><body>
+<header class="site-header"><div class="container navbar"><a class="brand" href="/"><img src="../assets/app-icon.png" alt=""><span>Audio Lounge</span></a><nav class="navlinks" aria-label="Primary navigation"><a href="/">Audio Lounge</a><a href="/halo/">HALO</a><a href="/blog/">Blog</a><a href="/help/">Help</a></nav><a class="store-button" href="/download/">Download</a></div></header>
+<main><section class="hero container guide-hero"><p class="eyebrow">SMB Direct</p><h1>Your music,<br>right where you left it.</h1><p class="hero-copy">Connect Audio Lounge directly to the NAS or SMB share where your library already lives.</p></section>
+<div class="guide-shell"><p class="guide-intro">No Finder mount is required on Mac, and no Files app mount is required on iPad. Once the share is configured, Audio Lounge connects to it directly.</p>
+<div class="guide-block">
+  <p class="kicker">Before Audio Lounge</p>
+  <h2>Make sure the NAS is ready for SMB.</h2>
+  <p class="guide-intro">Audio Lounge can connect directly to a NAS, but the NAS still needs to offer the music folder over SMB first. For most home NAS systems, this is a one-time setup.</p>
+
+  <div class="smb-ready-box">
+    <h3>You only need four things on the NAS side:</h3>
+    <ul>
+      <li><strong>SMB / File Sharing is enabled.</strong> On many NAS systems this may be called SMB, File Services, Windows File Sharing, or simply File Sharing.</li>
+      <li><strong>Your music is inside a shared folder.</strong> For example, a shared folder named <code>Music</code>.</li>
+      <li><strong>Your NAS account can read that shared folder.</strong> Your normal NAS username is fine; a separate Audio Lounge account is not required.</li>
+      <li><strong>You know the NAS hostname or IP address.</strong> For example <code>192.168.1.20</code>.</li>
+    </ul>
+  </div>
+
+  <div class="smb-success">
+    <strong>Quick check</strong>
+    <p>If another computer can already open this music share using SMB, your NAS is probably ready. Audio Lounge does not require you to mount the share in Finder first.</p>
+  </div>
+
+  <p class="note">On Synology, QNAP, TrueNAS, and most other home NAS systems, look for settings named <strong>SMB</strong>, <strong>File Services</strong>, <strong>Windows File Sharing</strong>, or <strong>Shared Folders</strong>. The exact menu name varies by NAS brand.</p>
+</div>
+
+<div class="guide-block"><p class="kicker">Mac & iPad</p><h2>Add the share in Audio Lounge.</h2>
+<figure class="guide-screenshot"><img src="../assets/mac-smb-direct.jpg" alt="Add SMB Share dialog in Audio Lounge"><figcaption>Audio Lounge connects directly to the SMB share; no Finder mount is required first.</figcaption></figure>
+
+<p class="guide-intro">Open Audio Lounge → Settings → SMB Shares → Add SMB Share. Then fill in the fields below.</p>
+
+<div class="smb-ready-box">
+  <h3>Share and Folder are not the same thing.</h3>
+  <p style="margin:0 0 14px;color:var(--muted);line-height:1.6"><strong>Share</strong> is the network share name published by your NAS. It is the first name that appears immediately after the NAS address. <strong>Folder</strong> is any subfolder inside that Share.</p>
+
+  <p style="margin:0 0 10px"><code>//192.168.1.20/NAShare/Music/Classical</code></p>
+  <ul>
+    <li><strong>Host / IP</strong> = <code>192.168.1.20</code></li>
+    <li><strong>Share</strong> = <code>NAShare</code></li>
+    <li><strong>Folder</strong> = <code>Music/Classical</code></li>
+  </ul>
+
+  <p style="margin:18px 0 0;color:var(--muted);line-height:1.6"><strong>Easy rule:</strong> Share is the name immediately after the NAS address. Folder is everything after the Share.</p>
+</div>
+
+<div class="smb-ready-box">
+  <h3>Two common examples</h3>
+  <p style="margin:0 0 12px;color:var(--muted);line-height:1.6">If your NAS directly shares a folder named <code>Music</code>:</p>
+  <p style="margin:0 0 8px"><code>//192.168.1.20/Music</code></p>
+  <ul>
+    <li><strong>Share</strong> = <code>Music</code></li>
+    <li><strong>Folder</strong> = leave blank</li>
+  </ul>
+
+  <p style="margin:20px 0 12px;color:var(--muted);line-height:1.6">If your music library is inside a subfolder of that share:</p>
+  <p style="margin:0 0 8px"><code>//192.168.1.20/Music/HiRes</code></p>
+  <ul>
+    <li><strong>Share</strong> = <code>Music</code></li>
+    <li><strong>Folder</strong> = <code>HiRes</code></li>
+  </ul>
+</div>
+
+<div class="smb-field-guide">
+  <div class="smb-field-row">
+    <strong>Host / IP</strong>
+    <p>The NAS address, such as <code>192.168.1.20</code>. You can also use a local hostname if your network resolves it reliably.</p>
+  </div>
+  <div class="smb-field-row">
+    <strong>Port</strong>
+    <p>Leave this at <code>445</code> unless your NAS is configured to use something different.</p>
+  </div>
+  <div class="smb-field-row">
+    <strong>Share</strong>
+    <p>The SMB share name published by the NAS. It is the first name immediately after the NAS address. For <code>//192.168.1.20/NAShare/Music</code>, the Share is <code>NAShare</code>.</p>
+  </div>
+  <div class="smb-field-row">
+    <strong>Folder</strong>
+    <p>Optional. This is the path inside the Share. For <code>//192.168.1.20/NAShare/Music/Classical</code>, the Folder is <code>Music/Classical</code>.</p>
+  </div>
+  <div class="smb-field-row">
+    <strong>Username</strong>
+    <p>The NAS account that has permission to read the share.</p>
+  </div>
+  <div class="smb-field-row">
+    <strong>Password</strong>
+    <p>The password for that NAS account.</p>
+  </div>
+  <div class="smb-field-row">
+    <strong>Domain</strong>
+    <p>Most home NAS users should leave this blank. It is mainly for managed Windows/domain environments.</p>
+  </div>
+</div>
+
+<p class="note"><strong>Remember:</strong> Audio Lounge needs the SMB <em>Share name</em>, not the name of any arbitrary folder on the NAS. A normal folder only belongs in the Folder field if it sits inside the published Share.</p>
+
+<figure class="guide-screenshot"><img src="../assets/mac-smb-direct.jpg" alt="Add SMB Share dialog in Audio Lounge"><figcaption>Audio Lounge connects directly to the SMB share; no Finder mount is required first.</figcaption></figure>
+<ol><li>Open Audio Lounge and choose the option to add a network/SMB library.</li><li>Enter the Host or IP address and port.</li><li>Enter the SMB Share name.</li><li>If needed, enter a Folder inside the share.</li><li>Enter the SMB username and password. Leave Domain blank unless your network specifically requires one.</li><li>Connect, then choose the music location to scan.</li></ol>
+<p class="note">Example: NAS <code>192.168.1.50</code>, port <code>445</code>, share <code>Music</code>, folder <code>Classical</code>. Audio Lounge connects directly to that location; it does not need the share mounted elsewhere first.</p></div>
+
+<div class="guide-block"><p class="kicker">If it does not connect</p><h2>Check the basics.</h2><ul><li>Confirm SMB is enabled on the NAS.</li><li>Confirm the user has permission to read the share.</li><li>Use the share name, not the NAS filesystem path.</li><li>Try the NAS IP address if the hostname does not resolve.</li><li>Make sure Mac/iPad and NAS are on the same reachable network.</li><li>On iPad, allow Audio Lounge Local Network access when prompted.</li></ul>
+<p>More edge cases and technical details are in the <a class="text-link" href="/faq/#smb-technical">FAQ →</a></p></div></div>
+<div class="guide-block">
+  <p class="kicker">Troubleshooting</p>
+  <h2>If Audio Lounge cannot connect.</h2>
+  <div class="smb-field-guide">
+    <div class="smb-field-row">
+      <strong>“Connection failed”</strong>
+      <p>Confirm the NAS is powered on, SMB is enabled, and the Mac or iPad is on the same local network.</p>
+    </div>
+    <div class="smb-field-row">
+      <strong>“Authentication failed”</strong>
+      <p>Recheck the NAS username and password, and make sure that account has permission to read the shared folder.</p>
+    </div>
+    <div class="smb-field-row">
+      <strong>Share not found</strong>
+      <p>Check that <strong>Share</strong> is the shared-folder name—not the whole path. Put subfolders in the <strong>Folder</strong> field instead.</p>
+    </div>
+    <div class="smb-field-row">
+      <strong>Hostname does not work</strong>
+      <p>Try the NAS IP address instead. You can usually find it in the NAS app or your router.</p>
+    </div>
+  </div>
+</div>
+</main>
+<footer class="site-footer"><div class="container footer-row"><div>© <span data-year></span> Audio Lounge.</div><div class="footer-links"><a href="/faq/">FAQ</a><a href="/privacy/">Privacy</a></div></div></footer><script src="../js/main.js"></script></body></html>

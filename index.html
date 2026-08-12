@@ -1,138 +1,89 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="description" content="Audio Lounge is a native local music player for macOS. A beautiful home for the music you own.">
-  <meta name="theme-color" content="#f5f5f7">
-  <link rel="canonical" href="https://audiolounge.app/">
-  <link rel="icon" type="image/png" href="assets/app-icon.png">
-  <link rel="apple-touch-icon" href="assets/app-icon.png">
-  <meta property="og:title" content="Audio Lounge — A beautiful home for your music">
-  <meta property="og:description" content="Sophisticated underneath. Effortless on the surface.">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://audiolounge.app/">
-  <meta property="og:image" content="https://audiolounge.app/assets/library-grid.png">
-  <meta name="twitter:card" content="summary_large_image">
-  <title>Audio Lounge — A beautiful home for your music</title>
-  <link rel="alternate" type="application/rss+xml" title="Audio Lounge Blog" href="https://audiolounge.app/feed.xml">
-  <link rel="stylesheet" href="css/style.css">
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is Audio Lounge?","acceptedAnswer":{"@type":"Answer","text":"Audio Lounge is a native music player for macOS, designed for people who own and care about their music collections."}},{"@type":"Question","name":"Who is Audio Lounge for?","acceptedAnswer":{"@type":"Answer","text":"Audio Lounge is for people who keep a personal music library and want a calm, native macOS experience for browsing and listening."}},{"@type":"Question","name":"Does Audio Lounge require a subscription?","acceptedAnswer":{"@type":"Answer","text":"No. Audio Lounge offers a free starting experience, and a one-time purchase unlocks unlimited playback. There is no subscription."}},{"@type":"Question","name":"Where can my music be stored?","acceptedAnswer":{"@type":"Answer","text":"Audio Lounge can use music stored on your Mac, external drives, and network volumes that are already mounted in macOS."}},{"@type":"Question","name":"Does Audio Lounge upload my music?","acceptedAnswer":{"@type":"Answer","text":"No. Your music stays where it is. Audio Lounge does not require cloud upload or an Audio Lounge account."}},{"@type":"Question","name":"Which formats are supported?","acceptedAnswer":{"@type":"Answer","text":"Audio Lounge supports FLAC, ALAC, WAV, AIFF, APE, WavPack, AAC, MP3, CUE, DSF, DFF, and SACD ISO."}},{"@type":"Question","name":"Does Audio Lounge support bit-perfect playback?","acceptedAnswer":{"@type":"Answer","text":"Yes, on supported hardware and output configurations. Audio Lounge also supports automatic sample-rate matching and transparent audio-path information."}},{"@type":"Question","name":"Does Audio Lounge support DSD?","acceptedAnswer":{"@type":"Answer","text":"Yes. Audio Lounge supports DSF, DFF including DST, SACD ISO, DoP output for compatible DACs, and high-quality DSD-to-PCM conversion."}},{"@type":"Question","name":"Does Audio Lounge support gapless playback?","acceptedAnswer":{"@type":"Answer","text":"Yes. Audio Lounge supports gapless playback across compatible tracks."}},{"@type":"Question","name":"Can Audio Lounge handle large libraries?","acceptedAnswer":{"@type":"Answer","text":"Audio Lounge is designed to browse and search large local collections smoothly. Library-management features remain available regardless of library size."}},{"@type":"Question","name":"Does Audio Lounge modify my music files?","acceptedAnswer":{"@type":"Answer","text":"Audio Lounge is designed to leave your music in place. It builds its own library view around the files and locations you choose."}},{"@type":"Question","name":"Can I use Audio Lounge without Apple Music?","acceptedAnswer":{"@type":"Answer","text":"Yes. Audio Lounge works with your own local music library and does not require an Apple Music subscription."}},{"@type":"Question","name":"Can I use a NAS with Audio Lounge?","acceptedAnswer":{"@type":"Answer","text":"Yes, when the NAS share is already mounted in macOS as a network volume. Audio Lounge does not mount or configure the NAS itself."}},{"@type":"Question","name":"Does Audio Lounge support CUE sheets?","acceptedAnswer":{"@type":"Answer","text":"Yes. Audio Lounge supports CUE sheets for compatible local audio files."}},{"@type":"Question","name":"What does the Transparent Audio Path show?","acceptedAnswer":{"@type":"Answer","text":"It shows the source format, decoding path, output device, and final sample rate in real time."}},{"@type":"Question","name":"How do I get help?","acceptedAnswer":{"@type":"Answer","text":"Visit the Support page or email support@audiolounge.app."}}]}</script>
-</head>
-<body>
-  <header class="site-header">
-    <div class="container navbar">
-      <a class="brand" href="index.html" aria-label="Audio Lounge home"><img src="assets/app-icon.png" alt=""><span>Audio Lounge</span></a>
-      <nav class="navlinks" aria-label="Primary navigation">
-        <a href="faq.html">FAQ</a>
-
-        <a href="support.html">Support</a>
-
-        <a href="blog.html">Blog</a>
-      </nav>
-      <a class="store-button" href="/download/" target="_blank" rel="noopener">Mac App Store</a>
-    </div>
-  </header>
-
-  <main>
-    <section class="hero container">
-      <div class="hero-brand reveal">
-        <img src="assets/app-icon.png" alt="Audio Lounge app icon">
-        <span>Audio Lounge</span>
-      </div>
-      <p class="eyebrow">Made for macOS</p>
-      <h1>A beautiful home<br>for your music.</h1>
-      <p class="hero-copy">Built for people who own and care about their collection.</p>
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Audio Lounge — an elegant music player for the music you own. Audio Lounge 1.1 adds SMB Direct and HALO Network Audio. Audio Lounge Air for iPad is coming soon.">
+<link rel="canonical" href="https://audiolounge.app/"><link rel="icon" href="assets/app-icon.png"><link rel="apple-touch-icon" href="assets/app-icon.png">
+<meta property="og:title" content="Audio Lounge — An elegant music player for the music you own"><meta property="og:image" content="https://audiolounge.app/assets/mac-library-1-1.jpg">
+<title>Audio Lounge — An elegant music player for the music you own</title><link rel="stylesheet" href="css/style.css"></head><body>
+<header class="site-header"><div class="container navbar"><a class="brand" href="/"><img src="assets/app-icon.png" alt=""><span>Audio Lounge</span></a><nav class="navlinks" aria-label="Primary navigation"><a href="/">Audio Lounge</a><a href="/halo/">HALO</a><a href="/blog/">Blog</a><a href="/help/">Help</a></nav><a class="store-button" href="/download/">Download</a></div></header>
+<main>
+<section class="hero container final-hero">
+      <div class="hero-brand"><img src="assets/app-icon.png" alt=""><span>Audio Lounge</span></div>
+      <p class="eyebrow">Audio Lounge 1.1</p>
+      <h1>An elegant music player<br>for the music you own.</h1>
+      <p class="hero-subline">Beautifully organized. Faithfully played. Now with direct NAS access and an elegant network path to your Hi‑Fi.</p>
       <div class="actions">
-        <a class="button button-primary" href="/download/" target="_blank" rel="noopener">Download Free</a>
-        <a class="button button-secondary" href="#library">Explore Audio Lounge</a>
+        <a class="button button-primary" href="https://apps.apple.com/us/app/audio-lounge/id6767935421?mt=12" target="_blank" rel="noopener">Download for Mac</a>
+        <a class="button button-secondary" href="#one-one">What’s new in 1.1</a>
       </div>
     </section>
+<div class="hero-product reveal product-visual final-hero-image"><div class="product-frame"><img src="assets/mac-library-1-1.jpg" alt="Audio Lounge 1.1 library on Mac"></div></div>
 
-    <div class="hero-product reveal">
-      <div class="product-frame"><img src="assets/library-grid.png" alt="Audio Lounge album library on macOS"></div>
+<section class="release-story" id="one-one">
+  <div class="container">
+    <div class="section-copy">
+      <p class="kicker">What’s new in Audio Lounge 1.1</p>
+      <h2>Three changes that make Audio Lounge much less tied to one device.</h2>
+      <p class="lede">Version 1.1 adds direct NAS access, high-resolution network audio, and the foundation for the same Audio Lounge experience on iPad.</p>
     </div>
 
-    <section class="section container" id="library">
-      <div class="split">
-        <div class="section-copy">
-          <p class="kicker">Your collection</p>
-          <h2>Made for the music you own.</h2>
-          <p class="lede">Browse music from your Mac, external drives, or mounted network storage. Your collection stays exactly where it belongs.</p>
-        </div>
-        <div class="screenshot reveal"><img src="assets/library-list.png" alt="Audio Lounge library list view"></div>
+    <div class="release-story-grid">
+      <div class="release-story-card">
+        <span class="number">01</span>
+        <h3>SMB Direct</h3>
+        <p>Connect directly to a NAS or SMB share. No Finder mount on Mac, no Files app mount on iPad, and no cloud copy of your library.</p>
       </div>
-    </section>
-
-    <section class="section dark" id="playback">
-      <div class="container split reverse">
-        <div class="screenshot reveal"><img src="assets/now-playing.png" alt="Audio Lounge Now Playing view"></div>
-        <div class="section-copy">
-          <p class="kicker">Faithful playback</p>
-          <h2>Your music.<br>Exactly as you remember it.</h2>
-          <p class="lede">Bit-perfect playback, automatic sample-rate matching, DoP, and a transparent audio path—without turning listening into a setup exercise.</p>
-        </div>
+      <div class="release-story-card">
+        <span class="number">02</span>
+        <h3>HALO Network Audio</h3><p class="micro-note">Hi-Res Audio Loop Output</p>
+        <p>Send high-resolution PCM and DSD/DoP from Audio Lounge to a lightweight HALO Endpoint beside your USB DAC.</p>
       </div>
-    </section>
-
-    <section class="section gallery" id="details">
-      <div class="container center">
-        <div class="section-copy">
-          <p class="kicker">Thoughtfully designed</p>
-          <h2>Everything in its place.</h2>
-          <p class="lede">A flexible queue. Clear playback information. A library that remains calm, even when it grows.</p>
-        </div>
-        <div class="gallery-grid">
-          <div class="reveal"><img src="assets/queue_list.png" alt="Audio Lounge playback queue"></div>
-          <div class="reveal"><img src="assets/audio-path.png" alt="Audio Lounge audio path details"></div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section container tech">
-      <div class="section-copy">
-        <p class="kicker">Sophisticated underneath</p>
-        <h2>The right behavior, quietly in the background.</h2>
-        <p class="lede">The hardest work is designed to disappear.</p>
-      </div>
-      <div class="tech-grid">
-        <article class="tech-item reveal"><h3>Bit-perfect</h3><p>Integer Direct playback with a clear view of the final output path.</p></article>
-        <article class="tech-item reveal"><h3>Sample-rate aware</h3><p>Automatic matching with optional integer-ratio PCM resampling.</p></article>
-        <article class="tech-item reveal"><h3>Continuous</h3><p>Queue preloading, gapless playback, precise seeking, and de-click handling.</p></article>
-        <article class="tech-item reveal"><h3>Collection-first</h3><p>External CUE support, multilingual metadata, artwork, and responsive large-library browsing.</p></article>
-      </div>
-    </section>
-
-    <section class="manifesto">
-      <div class="container">
-        <h2>Sophisticated underneath.<br>Effortless on the surface.</h2>
-        <p>Every technical detail should earn its place—and quietly get out of the way.</p>
-      </div>
-    </section>
-
-    <section class="download container">
-      <div class="download-panel reveal">
-        <p class="kicker">Start free</p>
-        <h2>Bring your library home.</h2>
-        <p>Full playback is free for libraries up to 50 albums and 500 tracks. One purchase unlocks unlimited playback. No subscription.</p>
-        <a class="button button-primary" href="/download/" target="_blank" rel="noopener">View on the Mac App Store</a>
-      </div>
-    </section>
-  </main>
-
-  <footer class="site-footer">
-    <div class="container footer-row">
-      <div>© <span data-year></span> Audio Lounge. Crafted for macOS.</div>
-      <div class="footer-links">
-        <a href="faq.html">FAQ</a>
-
-        <a href="support.html">Support</a>
-
-        <a href="blog.html">Blog</a>
-        <a href="privacy.html">Privacy</a>
+      <div class="release-story-card">
+        <span class="number">03</span>
+        <h3>Audio Lounge Air</h3>
+        <p>The same collection-first Audio Lounge experience is coming to iPadOS—not as a remote, but as Audio Lounge on iPad.</p>
       </div>
     </div>
-  </footer>
-  <script src="js/main.js"></script>
-</body>
-</html>
+
+    <p class="release-story-summary">Your music can stay on your NAS. Your DAC can stay with your Hi‑Fi. Your Mac or iPad can stay where you actually use it.</p>
+  </div>
+</section>
+
+<section class="section container" id="one-one-details">
+          <div class="section-copy">
+            <p class="kicker">Designed to disappear</p>
+            <h2>More freedom.<br>Same Audio Lounge.</h2>
+            <p class="lede">The new networking features are there to remove setup from the listening experience—not add another system to manage.</p>
+          </div>
+          <div class="feature-pair final-pair">
+            <article class="feature-card reveal">
+              <p class="kicker">SMB Direct</p>
+              <h3>Your music, right where you left it.</h3>
+              <p>Connect directly to your NAS or SMB share. No Finder mounting, no Files app mounting, and no cloud copy of the library.</p>
+              <a class="text-link" href="/smb/">Set up SMB Direct →</a>
+            </article>
+            <article class="feature-card dark-card reveal">
+              <p class="kicker">HALO Network Audio</p>
+              <h3>Your DAC, right where it belongs.</h3>
+              <p>Send high-resolution playback from Audio Lounge to a lightweight HALO Endpoint beside your USB DAC.</p>
+              <a class="text-link" href="/halo/">Explore HALO →</a>
+            </article>
+          </div>
+        </section>
+
+<section class="section container"><div class="air-panel reveal final-air"><p class="kicker">Audio Lounge Air</p><h2>The same Audio Lounge.<br>Now made for iPad.</h2>
+<div class="air-lines">Your library can stay on your NAS.<br>Your DAC can stay with your Hi‑Fi.<br>Your iPad can stay with you.</div><span class="status-pill soon">Coming Soon</span>
+<div class="dual-visual air-showcase">
+  <figure><img src="assets/ipad-library.jpg" alt="Audio Lounge Air library on iPad"><figcaption>Library on iPad</figcaption></figure>
+  <figure><img src="assets/ipad-queue.jpg" alt="Audio Lounge Air queue on iPad"><figcaption>Queue on iPad</figcaption></figure>
+</div></div></section>
+
+<section class="section dark"><div class="container split"><div class="section-copy"><p class="kicker">Faithful Playback</p><h2>Hear the file.<br>Not the player.</h2>
+<p class="lede">Bit-perfect playback on supported hardware, automatic sample-rate matching, gapless playback, DoP for compatible DACs, and optional PCM upsampling.</p><a class="text-link" href="/faq/#technical">Technical details →</a></div>
+<div class="screenshot reveal"><img src="assets/mac-halo-now-playing.jpg" alt="Audio Lounge Now Playing over HALO on Mac"></div></div></section>
+
+<section class="section gallery"><div class="container center"><div class="section-copy"><p class="kicker">Transparent Audio Path</p><h2>Know exactly what you’re hearing.</h2>
+<p class="lede">See the source format, playback path, output device, and final sample rate in real time.</p></div>
+<div class="gallery-grid"><div class="reveal"><img src="assets/ipad-queue.jpg" alt="Audio Lounge queue"></div><div class="reveal"><img src="assets/mac-halo-now-playing.jpg" alt="Audio Lounge audio path"></div></div></div></section>
+
+<section class="manifesto"><div class="container"><h2>Sophisticated underneath.<br>Effortless on the surface.</h2><p>Technology should serve the listening experience—and quietly get out of the way.</p></div></section>
+<section class="download container"><div class="download-panel reveal"><p class="kicker">Start free</p><h2>Bring your library home.</h2><p>Audio Lounge 1.1 for Mac is available now. Audio Lounge Air for iPad is coming soon. One-time purchase. No subscription.</p><a class="button button-primary" href="/download/">Download Audio Lounge</a></div></section>
+</main><footer class="site-footer"><div class="container footer-row"><div>© <span data-year></span> Audio Lounge. Crafted for people who care about their music.</div><div class="footer-links"><a href="/faq/">FAQ</a><a href="/privacy/">Privacy</a></div></div></footer><script src="js/main.js"></script></body></html>

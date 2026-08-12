@@ -1,0 +1,102 @@
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="SMB Direct, HALO Network Audio, and Audio Lounge Air make a local music library feel less tied to any one device.">
+<link rel="canonical" href="https://audiolounge.app/blog/introducing-audio-lounge-1-1/">
+<link rel="icon" href="assets/app-icon.png">
+<meta property="og:title" content="Introducing Audio Lounge 1.1 — Audio Lounge">
+<meta property="og:description" content="SMB Direct, HALO Network Audio, and Audio Lounge Air make a local music library feel less tied to any one device.">
+<meta property="og:type" content="article">
+<title>Introducing Audio Lounge 1.1 — Audio Lounge</title>
+<link rel="stylesheet" href="css/style.css">
+</head><body>
+<header class="site-header"><div class="container navbar">
+<a class="brand" href="/"><img src="assets/app-icon.png" alt=""><span>Audio Lounge</span></a>
+<nav class="navlinks" aria-label="Primary navigation"><a href="/">Audio Lounge</a><a href="/halo/">HALO</a><a href="/blog/">Blog</a><a href="/help/">Help</a></nav><a class="store-button" href="/download/">Download</a>
+</div></header>
+<main class="article-shell">
+<p class="eyebrow">Audio Lounge Blog · August 12, 2026 · 9 min read</p>
+<h1>Introducing Audio Lounge 1.1</h1>
+<p class="deck">SMB Direct, HALO Network Audio, and Audio Lounge Air make a local music library feel less tied to any one device.</p>
+<figure class="article-figure-wide"><img src="assets/mac-library-1-1.jpg" alt=""></figure>
+
+<p class="article-section-lead">Audio Lounge 1.1 is not a redesign of what Audio Lounge is. It is an attempt to make the same listening experience work naturally when the library, the screen, and the DAC no longer happen to sit beside one another.</p>
+
+<p>Audio Lounge began around local music: albums you chose, files you keep, and a library that stays under your control. The first version focused on making that collection pleasant to browse and faithful to play on a Mac. As the app grew—and especially as Audio Lounge Air began taking shape for iPad—two practical limitations became much more obvious.</p>
+
+<p>The first was storage. A serious lossless library often lives on a NAS, not on the device in your hands. The second was output. A serious DAC often belongs beside the Hi‑Fi system, not beside the screen you are using to choose music.</p>
+
+<div class="article-principles">
+  <div class="article-principle"><strong>Keep the library where it belongs.</strong><span>Local storage, external drives, or a NAS—without forcing a new cloud library.</span></div>
+  <div class="article-principle"><strong>Keep the DAC where it belongs.</strong><span>Beside the listening system, even when Audio Lounge is running somewhere else.</span></div>
+  <div class="article-principle"><strong>Keep Audio Lounge familiar.</strong><span>Mac and iPad should feel like the same product, not a server and a remote.</span></div>
+</div>
+
+<h2>SMB Direct: the library should not need a staging area.</h2>
+
+<p>On a Mac, network music has traditionally been easy enough to reach: mount a NAS share in Finder, wait for it to appear as a volume, and then point the application at that mounted location. The problem is not that this workflow is difficult. The problem is that it is an extra workflow at all.</p>
+
+<p>For a music player built around ownership, storage should feel like part of the library—not like another application the listener has to prepare first. SMB Direct in Audio Lounge 1.1 therefore connects to the share itself. You provide the NAS address, SMB share name, credentials, and an optional subfolder. Audio Lounge handles the connection directly.</p>
+
+<figure class="article-figure"><img src="assets/mac-smb-direct.jpg" alt="Add SMB Share dialog in Audio Lounge on Mac"><figcaption>SMB Direct connects to the NAS share from inside Audio Lounge, without requiring the share to be mounted first in Finder.</figcaption></figure>
+
+<p>The benefit is modest on a single Mac and much larger on iPad. A large FLAC, DSD, or mixed-format collection does not need to be copied to the tablet. The user does not need to make the Files app part of the listening workflow. The NAS simply remains the library’s home.</p>
+
+<div class="article-callout"><strong>SMB Direct is intentionally boring.</strong><p>That is the point. Network storage should become invisible once it is configured.</p></div>
+
+<h2>HALO: the DAC should not dictate where the player lives.</h2>
+
+<p>Bringing Audio Lounge to iPad exposed the mirror image of the same problem. The iPad is most useful when it stays with the listener. A USB DAC is usually most useful when it stays with the audio system. Direct USB playback can sound exactly right and still feel physically wrong if it forces the iPad to live beside the rack.</p>
+
+<p>HALO Network Audio solves that separation without introducing another music system. Audio Lounge remains responsible for the library, queue, decoding, optional PCM upsampling, DoP preparation, and the playback choices visible to the listener. A HALO Endpoint has a much narrower role: receive the prepared audio path over the local network and deliver it to the selected USB DAC.</p>
+
+<div class="article-flow">
+  <div class="article-flow-node"><strong>Audio Lounge</strong><small>Mac or iPad</small></div>
+  <div class="article-flow-arrow">→</div>
+  <div class="article-flow-node"><strong>HALO Endpoint</strong><small>Local network</small></div>
+  <div class="article-flow-arrow">→</div>
+  <div class="article-flow-node"><strong>USB DAC</strong><small>Hi‑Fi system</small></div>
+</div>
+
+<p>That architecture matters because it preserves one mental model. The device running Audio Lounge is still the player. HALO does not ask the user to maintain a second library, choose a separate server, or think about whether the iPad is “just a remote.”</p>
+
+<figure class="article-figure-wide"><img src="assets/mac-halo-now-playing.jpg" alt="Audio Lounge playing through HALO on Mac"><figcaption>Now Playing makes the HALO route visible alongside the final sample rate and bit depth.</figcaption></figure>
+
+<h2>The playback engine is still the center of the product.</h2>
+
+<p>It would have been easy for a networking release to turn into a networking product. I wanted the opposite. Audio Lounge 1.1 still starts with the same playback priorities: supported bit-perfect paths, automatic sample-rate matching, gapless playback where appropriate, DoP for compatible DACs, and optional PCM upsampling when the listener explicitly chooses it.</p>
+
+<p>The network features are meant to extend those capabilities rather than obscure them. If Audio Lounge is sending native-rate PCM to a HALO Endpoint, the user should be able to see that. If upsampling is enabled, the changed output rate should be visible. If DoP is used, the path should remain understandable rather than disappearing behind a generic “network player” label.</p>
+
+<figure class="article-figure"><img src="assets/ipad-library.jpg" alt="Audio Lounge Air library on iPad"><figcaption>Audio Lounge Air keeps the same collection-first visual language on iPad.</figcaption></figure>
+
+<h2>Audio Lounge Air is not a companion app.</h2>
+
+<p>This distinction matters to the design of 1.1. Audio Lounge Air is not meant to sit on an iPad and control a Mac that must remain powered on somewhere else. It is the iPadOS expression of Audio Lounge itself.</p>
+
+<p>The interface naturally changes where iPadOS calls for it, but the product should remain recognizable: the same collection-first idea, the same emphasis on the music you own, the same queue and playback philosophy, and the same transparency about what happens between a file and a DAC.</p>
+
+<div class="article-pullquote">Your library can stay on your NAS.<br>Your DAC can stay with your Hi‑Fi.<br>Your iPad can stay with you.<small>That is the product idea behind SMB Direct + HALO + Audio Lounge Air.</small></div>
+<figure class="article-figure-wide"><img src="assets/ipad-halo-now-playing.jpg" alt="Audio Lounge Air playing through HALO on iPad"><figcaption>Audio Lounge Air can send the same high-resolution playback path to a HALO Endpoint from iPad.</figcaption></figure>
+
+<h2>Why I think this is the right kind of “1.1.”</h2>
+
+<p>Version numbers often suggest feature counts: more formats, more toggles, more screens. Audio Lounge 1.1 does add real capabilities, but I think the more important improvement is that the system asks the listener to manage fewer things.</p>
+
+<p>There is no new Audio Lounge cloud to migrate into. There is no new Core to keep running. There is no requirement that the Mac become the permanent center of the home listening system. The library can remain on the storage you already trust, and the DAC can remain in the system where it makes sense.</p>
+
+<p>In other words, there is more engineering underneath and, ideally, less infrastructure visible on the surface.</p>
+
+<h2>What comes next.</h2>
+
+<p>Audio Lounge 1.1 for Mac brings SMB Direct and HALO Network Audio into the existing desktop experience. Audio Lounge Air brings that same approach to iPadOS and is currently coming soon to the App Store.</p>
+
+<p>The direction is deliberately narrow: keep improving the experience around owned music without turning Audio Lounge into something it was never intended to be. The collection stays yours. The playback path stays visible. The software stays out of the way when the music starts.</p>
+
+<p class="article-endnote"><a class="text-link" href="/blog/">← Back to the Audio Lounge Blog</a></p>
+</main>
+<footer class="site-footer"><div class="container footer-row">
+<div>© <span data-year></span> Audio Lounge.</div>
+<div class="footer-links"><a href="/blog/">Blog</a><a href="/privacy/">Privacy</a></div>
+</div></footer>
+<script src="js/main.js"></script>
+</body></html>
