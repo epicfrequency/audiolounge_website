@@ -1,28 +1,29 @@
 #!/usr/bin/env bash
-# install.sh — one step from a fresh machine to a running endpoint: installs
-# what's missing, builds, picks the DAC, and registers the service. Safe to
-# re-run to upgrade an existing install.
+# release/install.sh — binary-only installer for HALO Endpoint.
 #
-# There is deliberately no separate build script and no build-time tuning.
-# The DSD packing a DAC wants (BE/LE, 8/16/32-bit) is discovered at runtime,
-# so one binary drives any device — which is what makes it sane to build this
-# on one machine and copy it to another.
+# Installs a prebuilt halo-daemon for this machine's architecture. It never
+# clones or downloads the source tree and never installs a compiler or build
+# toolchain: the release binaries come from the GitHub Actions pipeline
+# (linked against real libasound, stripped, checksummed) and are hosted at
+# https://audiolounge.app/halo/releases/<version>/.
 #
-# The one thing this exists to get right: the ALSA device and the TCP port
-# appear in *two* files (the systemd unit and the Avahi service). Editing
-# them by hand and forgetting one is the classic way to end up with a
-# daemon the sender can discover but not reach, or vice versa. Both are
-# generated here from the same two values.
+# Supported: DietPi, Raspberry Pi OS 64-bit, Ubuntu (anything with apt and
+# systemd). Only runtime dependencies are installed when missing: ALSA
+# runtime/tools and Avahi.
+#
+# Public install command (hosted copy):
+#   curl -fsSL https://audiolounge.app/halo/install.sh | sudo bash
+#
+# Safe to re-run to upgrade: it replaces the binary and regenerates the
+# systemd unit and Avahi advertisement from the same device/port values, so
+# the two can never drift apart.
 set -euo pipefail
 
-# Canonical source used when this script is piped in via curl and there is no
-# repository checkout on disk. Overridable for mirrors / private forks.
-HALO_REPO_URL="${HALO_REPO_URL:-https://github.com/epicfrequency/Halo}"
-HALO_REPO_BRANCH="${HALO_REPO_BRANCH:-main}"
-
-# Where this script actually lives. When piped (`curl ... | sudo bash`) the
-# value is unusable — that is the signal to bootstrap a checkout instead.
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]:-$0}")" 2>/dev/null && pwd)"
+# ------------------------------------------------------------------ config
+# Where the release artifacts live. Overridable for mirrors / staging.
+HALO_BASE_URL="${HALO_BASE_URL:-https://audiolounge.app/halo/releases}"
+# Empty means "resolve from $HALO_BASE_URL/latest.txt".
+HALO_VERSION="${HALO_VERSION:-}"
 
 DEVICE=""
 PORT="5555"
@@ -31,24 +32,27 @@ SKIP_DEPS=0
 
 usage() {
     cat <<USAGE
-Usage: sudo ./install.sh [--device hw:CARD,DEV] [--port N] [--yes] [--skip-deps]
-       curl -fsSL https://raw.githubusercontent.com/epicfrequency/Halo/main/install.sh \\
+Usage: sudo ./install.sh [--device hw:CARD,DEV] [--port N] [--version X.Y.Z] [--yes] [--skip-deps]
+       curl -fsSL https://audiolounge.app/halo/install.sh | sudo bash
+       curl -fsSL https://audiolounge.app/halo/install.sh \\
          | sudo bash -s -- --device hw:CARD,DEV --yes
 
-  --device   ALSA device, e.g. hw:1,0. Omit to choose interactively.
-             Use hw: — not plughw:/default: — or ALSA silently converts
-             formats and bit-perfect output is gone.
-  --port     TCP port to listen on (default 5555).
-  --yes      Don't prompt; auto-select the recommended device unless --device
-             is given.
-  --skip-deps  Fail instead of installing missing packages via apt.
+  --device    ALSA device, e.g. hw:1,0. Omit to choose interactively.
+              Use hw: — not plughw:/default: — or ALSA silently converts
+              formats and bit-perfect output is gone.
+  --port      TCP port to listen on (default 5555).
+  --version   Release version to install (default: \$HALO_BASE_URL/latest.txt).
+  --yes       Don't prompt; auto-select the recommended device unless
+              --device is given.
+  --skip-deps Fail instead of installing missing runtime packages via apt.
 
   When run from a terminal — including via the curl pipe — the numbered
-  device list is shown and you pick 1/2/3 as usual (the prompt is read from
-  the terminal, not the pipe). Only with --yes, or with no terminal at all,
-  is the recommended device auto-selected (first USB DSD device, else first
-  USB device, else first device). --device overrides everything.
-  HALO_REPO_URL / HALO_REPO_BRANCH override where the source is fetched from.
+  device list is shown and you pick 1/2/3 as usual. With --yes, or with no
+  terminal at all, the recommended device is auto-selected (first USB DSD
+  device, else first USB device, else first device). --device overrides.
+  HALO_BASE_URL / HALO_VERSION override where the binary is fetched from.
+
+  Supported architectures: aarch64/arm64 and x86_64/amd64 only (no arm32).
 USAGE
 }
 
@@ -56,6 +60,7 @@ while [ $# -gt 0 ]; do
     case "$1" in
         --device) DEVICE="${2:-}"; shift 2 ;;
         --port)   PORT="${2:-}";   shift 2 ;;
+        --version) HALO_VERSION="${2:-}"; shift 2 ;;
         --yes)    ASSUME_YES=1;    shift ;;
         --skip-deps) SKIP_DEPS=1;  shift ;;
         -h|--help) usage; exit 0 ;;
@@ -63,41 +68,118 @@ while [ $# -gt 0 ]; do
     esac
 done
 
-# ---------------------------------------------------------------- source
-# Running from a real checkout (./install.sh) uses the files in place. A
-# bare `curl ... | sudo bash` pipe has no checkout, so fetch the canonical
-# repository tarball into a temp dir and run from there; the temp dir is
-# removed automatically on exit.
-#
-# The completeness check is deliberately strict (all three markers, not
-# just Makefile+src): a partial copy that is missing e.g. tools/halo-log
-# would otherwise pass the old check and then die mid-install with
-# "install: cannot stat './tools/halo-log'" — a broken tree is not a
-# checkout, and bootstrapping the canonical tarball is the fix.
-if [ -f "$SCRIPT_DIR/Makefile" ] && [ -d "$SCRIPT_DIR/src" ] && [ -f "$SCRIPT_DIR/tools/halo-log" ]; then
-    cd "$SCRIPT_DIR"
-else
-    echo "==> No local checkout — fetching halo-daemon source"
-    echo "    ${HALO_REPO_URL} (branch ${HALO_REPO_BRANCH})"
-    BOOTSTRAP_DIR="$(mktemp -d)"
-    trap 'rm -rf "$BOOTSTRAP_DIR"' EXIT
-    TARBALL_URL="${HALO_REPO_URL%/}/archive/refs/heads/${HALO_REPO_BRANCH}.tar.gz"
-    curl -fsSL "$TARBALL_URL" -o "$BOOTSTRAP_DIR/halo.tar.gz"
-    tar -xzf "$BOOTSTRAP_DIR/halo.tar.gz" -C "$BOOTSTRAP_DIR"
-    # GitHub tarballs extract to "<repo>-<branch>/"; accept any single
-    # top-level directory so mirrors with different names work too.
-    EXTRACTED_DIR="$(find "$BOOTSTRAP_DIR" -mindepth 1 -maxdepth 1 -type d | head -1)"
-    [ -n "$EXTRACTED_DIR" ] && [ -f "$EXTRACTED_DIR/Makefile" ] \
-        || { echo "Fetched archive does not contain the halo-daemon source." >&2; exit 1; }
-    cd "$EXTRACTED_DIR"
-fi
+[ "$(id -u)" -eq 0 ] || { echo "Must run as root: sudo ./install.sh (or directly, if already root)." >&2; exit 1; }
+[[ "$PORT" =~ ^[0-9]+$ ]] && [ "$PORT" -ge 1 ] && [ "$PORT" -le 65535 ] \
+    || { echo "--port must be a number between 1 and 65535, got '$PORT'" >&2; exit 1; }
+command -v systemctl >/dev/null 2>&1 \
+    || { echo "systemd (systemctl) was not found — HALO Endpoint requires a systemd distro." >&2; exit 1; }
 
-# Enumerate every ALSA playback device as "hw:C,D<TAB>label".
-# Reads /proc/asound directly rather than parsing `aplay -l` output: the
-# proc layout is stable and machine-readable, whereas aplay's text has
-# changed shape across alsa-utils versions. cardN/usbid exists only for USB
-# cards, which cleanly separates a USB DAC from the Pi's onboard bcm2835
-# headphone and vc4-hdmi outputs without knowing their names.
+# ------------------------------------------------------- runtime deps only
+ensure_runtime_dependencies() {
+    local missing=()
+    command -v curl >/dev/null 2>&1 || missing+=(curl)
+    # The daemon links libasound.so.2; check the soname via ldconfig rather
+    # than a package name (Debian trixie renamed libasound2 -> libasound2t64).
+    ldconfig -p 2>/dev/null | grep -q 'libasound\.so\.2' || missing+=(libasound2)
+    command -v aplay >/dev/null 2>&1 || missing+=(alsa-utils)
+    # Avahi is the discovery mechanism — without it the endpoint runs but
+    # never appears in the app, which is a miserable thing to diagnose.
+    command -v avahi-daemon >/dev/null 2>&1 || missing+=(avahi-daemon)
+    # TLS trust store for the https downloads below; present on virtually
+    # every desktop install but not guaranteed on minimal images.
+    [ -f /etc/ssl/certs/ca-certificates.crt ] || missing+=(ca-certificates)
+
+    if [ ${#missing[@]} -eq 0 ]; then
+        echo "==> Runtime dependencies present"
+        return 0
+    fi
+
+    local uniq=()
+    local pkg
+    for pkg in "${missing[@]}"; do
+        case " ${uniq[*]-} " in *" $pkg "*) ;; *) uniq+=("$pkg") ;; esac
+    done
+
+    if [ "$SKIP_DEPS" -eq 1 ]; then
+        echo "Missing runtime packages: ${uniq[*]}" >&2
+        echo "Re-run without --skip-deps, or install them yourself." >&2
+        exit 1
+    fi
+    if ! command -v apt-get >/dev/null 2>&1; then
+        echo "Missing runtime packages: ${uniq[*]}" >&2
+        echo "No apt-get here — on Debian-family systems install them first:" >&2
+        echo "  apt-get install ${uniq[*]}" >&2
+        exit 1
+    fi
+
+    echo "==> Installing runtime packages: ${uniq[*]}"
+    apt-get update -qq
+    DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends "${uniq[@]}"
+}
+
+ensure_runtime_dependencies
+
+# --------------------------------------------------------------- download
+# Detect the architecture. arm32 (armv7l/armhf) is intentionally unsupported:
+# only arm64 and x86_64 releases are built.
+case "$(uname -m)" in
+    aarch64|arm64)  ARCH=arm64;   BIN_NAME=halo-daemon-linux-arm64 ;;
+    x86_64|amd64)   ARCH=x86_64;  BIN_NAME=halo-daemon-linux-x86_64 ;;
+    *) echo "Unsupported architecture: $(uname -m) (only aarch64/arm64 and x86_64/amd64 are published)." >&2; exit 1 ;;
+esac
+
+resolve_version() {
+    if [ -n "$HALO_VERSION" ]; then
+        case "$HALO_VERSION" in
+            *[!0-9A-Za-z._-]*|"") echo "Invalid --version / HALO_VERSION: '$HALO_VERSION'" >&2; exit 1 ;;
+        esac
+        return
+    fi
+    echo "==> Resolving latest release version from ${HALO_BASE_URL}/latest.txt"
+    HALO_VERSION="$(curl -fsSL "${HALO_BASE_URL}/latest.txt" | tr -d '[:space:]')"
+    case "$HALO_VERSION" in
+        *[!0-9A-Za-z._-]*|"") echo "Invalid version from latest.txt: '$HALO_VERSION'" >&2; exit 1 ;;
+    esac
+}
+
+resolve_version
+RELEASE_URL="${HALO_BASE_URL}/${HALO_VERSION}"
+
+WORK="$(mktemp -d)"
+trap 'rm -rf "$WORK"' EXIT
+
+echo "==> Downloading HALO Endpoint ${HALO_VERSION} (${BIN_NAME})"
+echo "    ${RELEASE_URL}/"
+curl -fsSL "${RELEASE_URL}/SHA256SUMS" -o "$WORK/SHA256SUMS"
+curl -fsSL "${RELEASE_URL}/${BIN_NAME}" -o "$WORK/${BIN_NAME}"
+
+# Verify the SHA-256 from the published checksums before touching the system.
+grep -q "^[0-9a-f]\{64\}  ${BIN_NAME}$" "$WORK/SHA256SUMS" \
+    || { echo "SHA256SUMS has no entry for ${BIN_NAME} — refusing to install." >&2; exit 1; }
+(
+    cd "$WORK"
+    sha256sum -c <(grep "${BIN_NAME}" SHA256SUMS)
+)
+
+# Cheap sanity checks on the downloaded file: ELF magic, then the e_machine
+# field (62 = x86_64, 183 = AArch64) so a wrong-arch binary can never be
+# installed even if the URL/name ever disagreed.
+[ "$(head -c 4 "$WORK/$BIN_NAME" | od -An -tx1 | tr -d ' \n')" = "7f454c46" ] \
+    || { echo "Downloaded file is not an ELF binary." >&2; exit 1; }
+MACHINE="$(od -An -tu2 -j 18 -N 2 "$WORK/$BIN_NAME" | tr -d ' ')"
+if [ "$ARCH" = arm64 ]; then
+    EXPECTED_MACHINE=183
+else
+    EXPECTED_MACHINE=62
+fi
+[ "$MACHINE" = "$EXPECTED_MACHINE" ] \
+    || { echo "Binary architecture mismatch (e_machine=${MACHINE}, expected ${EXPECTED_MACHINE} for ${ARCH})." >&2; exit 1; }
+
+# ----------------------------------------------------------------- device
+# Enumerate every ALSA playback device as "hw:C,D<TAB>label". Reads
+# /proc/asound directly rather than parsing `aplay -l`: the proc layout is
+# stable and machine-readable. cardN/usbid exists only for USB cards, which
+# cleanly separates a USB DAC from onboard outputs.
 enumerate_playback_devices() {
     local cardpath card name pcm dev bus dsd
     [ -d /proc/asound ] || return 0
@@ -106,11 +188,7 @@ enumerate_playback_devices() {
         card="${cardpath##*/card}"
         name="$(cat "$cardpath/id" 2>/dev/null || echo "card $card")"
         if [ -e "$cardpath/usbid" ]; then bus="USB"; else bus="onboard"; fi
-        # USB Audio Class devices list their altset formats here; a
-        # DSD-capable DAC advertises DSD_U8/U16/U32. Advisory only — some
-        # drivers don't populate it, and PCM-only setups are perfectly valid.
         if grep -qi 'DSD' "$cardpath/stream0" 2>/dev/null; then dsd=", DSD"; else dsd=""; fi
-        # pcmNp = playback, pcmNc = capture; only playback is usable here.
         for pcm in "$cardpath"/pcm*p; do
             [ -d "$pcm" ] || continue
             dev="${pcm##*/pcm}"; dev="${dev%p}"
@@ -119,11 +197,7 @@ enumerate_playback_devices() {
     done
 }
 
-# Reads one line from the user. In a normal terminal run stdin is the tty; in
-# a `curl ... | sudo bash` pipe the script's stdin is the pipe (already
-# consumed by bash), so fall back to /dev/tty — the numbered device chooser
-# keeps working exactly as it does for ./install.sh. Returns non-zero when
-# nothing can be read (fully non-interactive).
+# Reads one line from the user; falls back to /dev/tty for curl-piped runs.
 prompt_read() {
     local prompt="$1"
     if [ -t 0 ]; then
@@ -136,66 +210,7 @@ prompt_read() {
     fi
 }
 
-[ "$(id -u)" -eq 0 ] || { echo "Must run as root: sudo ./install.sh (or directly, if already root)." >&2; exit 1; }
-[[ "$PORT" =~ ^[0-9]+$ ]] || { echo "--port must be numeric, got '$PORT'" >&2; exit 1; }
-
-# ------------------------------------------------------------ dependencies
-# Installed rather than merely reported. A missing compiler or ALSA header is
-# not a decision the person running this needs to be consulted about, and
-# hand-copying an apt line out of an error message is the step where most
-# first installs stall.
-ensure_dependencies() {
-    local missing=()
-    command -v cc >/dev/null 2>&1 || command -v gcc >/dev/null 2>&1 || missing+=(build-essential)
-    command -v make >/dev/null 2>&1 || missing+=(build-essential)
-    [ -f /usr/include/alsa/asoundlib.h ] || missing+=(libasound2-dev)
-    # Discovery is how the sender finds this machine without anyone typing an
-    # IP address, so it counts as a dependency, not an optional extra.
-    command -v avahi-daemon >/dev/null 2>&1 || missing+=(avahi-daemon)
-
-    if [ ${#missing[@]} -eq 0 ]; then
-        echo "==> Dependencies present"
-        return 0
-    fi
-
-    # De-duplicate (build-essential can be added twice).
-    local uniq=()
-    local pkg
-    for pkg in "${missing[@]}"; do
-        case " ${uniq[*]-} " in *" $pkg "*) ;; *) uniq+=("$pkg") ;; esac
-    done
-
-    if [ "$SKIP_DEPS" -eq 1 ]; then
-        echo "Missing: ${uniq[*]}" >&2
-        echo "Re-run without --skip-deps, or install them yourself." >&2
-        exit 1
-    fi
-
-    if ! command -v apt-get >/dev/null 2>&1; then
-        echo "Missing: ${uniq[*]}" >&2
-        echo "No apt-get here — install the equivalents for your distribution:" >&2
-        echo "  Fedora/RHEL:  dnf install gcc make alsa-lib-devel avahi" >&2
-        echo "  Arch:         pacman -S base-devel alsa-lib avahi" >&2
-        exit 1
-    fi
-
-    echo "==> Installing: ${uniq[*]}"
-    apt-get update -qq
-    DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends "${uniq[@]}"
-}
-
-ensure_dependencies
-
-# ---------------------------------------------------------------- build
-echo "==> Building"
-make clean >/dev/null 2>&1 || true
-make
-[ -x ./halo-daemon ] || { echo "Build produced no halo-daemon binary." >&2; exit 1; }
-
-# ---------------------------------------------------------------- device
 if [ -z "$DEVICE" ]; then
-    # Portable read loop rather than `mapfile` — that is a bash 4+ builtin,
-    # and this way the script also runs under bash 3.2.
     DEV_LINES=()
     while IFS= read -r line; do DEV_LINES+=("$line"); done < <(enumerate_playback_devices)
     if [ "${#DEV_LINES[@]}" -eq 0 ]; then
@@ -254,9 +269,6 @@ esac
 
 echo
 echo "==> Capabilities reported by $DEVICE"
-# Informational: shows whether DSD_U32/U16/U8 appear (native DSD support)
-# and the supported rate range, which is what decides the app's HALO DSD
-# Mode setting. Never fatal — some drivers refuse this probe while busy.
 aplay --dump-hw-params -D "$DEVICE" /dev/null 2>&1 | sed -n '/FORMAT:/,/^$/p' || true
 
 # ------------------------------------------------------------------ user
@@ -268,41 +280,68 @@ fi
 usermod -aG audio halo
 
 # --------------------------------------------------------------- install
-# Stop first: replacing a running executable gives ETXTBSY.
 if systemctl is-active --quiet halo-daemon.service 2>/dev/null; then
     echo "==> Stopping running halo-daemon"
     systemctl stop halo-daemon.service
 fi
 
-echo "==> Installing binary to /usr/local/bin/halo-daemon"
-install -m 0755 ./halo-daemon /usr/local/bin/halo-daemon
+echo "==> Installing HALO Endpoint ${HALO_VERSION} to /usr/local/bin/halo-daemon"
+install -m 0755 "$WORK/$BIN_NAME" /usr/local/bin/halo-daemon
 
-# journalctl keeps either the timestamps or the cover art's colour, never
-# both. This is the reader that does — see README, "Timestamps and colour".
-# Optional on purpose: a missing log viewer must never fail the install of
-# the daemon itself.
-if [ -f ./tools/halo-log ]; then
-    install -m 0755 ./tools/halo-log /usr/local/bin/halo-log
-else
-    echo "==> tools/halo-log not found — skipping the log viewer (daemon unaffected)"
-fi
-
+# systemd unit. ExecStart and the Avahi port below are generated from the
+# same two values (device + port) so they can never drift apart.
 echo "==> Writing systemd unit (device=$DEVICE port=$PORT)"
-sed -E "s#^ExecStart=.*#ExecStart=/usr/local/bin/halo-daemon ${DEVICE} ${PORT}#" \
-    systemd/halo-daemon.service > /etc/systemd/system/halo-daemon.service
+cat > /etc/systemd/system/halo-daemon.service <<EOF
+[Unit]
+Description=HALO Endpoint (hi-res PCM/DSD network audio receiver)
+# sound.target exists on most distros incl. Raspberry Pi OS; harmless if
+# it doesn't, systemd just treats it as an ordering-only dependency.
+After=network-online.target sound.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+ExecStart=/usr/local/bin/halo-daemon ${DEVICE} ${PORT}
+Restart=on-failure
+RestartSec=1
+
+# --- run as an unprivileged, dedicated user, not root ---
+User=halo
+Group=halo
+# needed for /dev/snd/* access without being in the audio group's default
+# ACL setup on every distro; simplest is adding the \`halo\` user to audio.
+SupplementaryGroups=audio
+
+# --- let the process (specifically, its pthread_setschedparam(SCHED_FIFO)
+#     calls) actually take effect without running as root ---
+AmbientCapabilities=CAP_SYS_NICE
+CapabilityBoundingSet=CAP_SYS_NICE
+LimitRTPRIO=95
+LimitMEMLOCK=infinity
+NoNewPrivileges=yes
+
+# Creates /run/halo-daemon owned by this service (and removes it on stop).
+RuntimeDirectory=halo-daemon
+RuntimeDirectoryMode=0755
+
+# --- light hardening; nothing here touches the ALSA/network paths ---
+ProtectSystem=strict
+ProtectHome=yes
+PrivateTmp=yes
+# \`char-alsa\` is systemd's device-class name for ALSA character devices —
+# NOT a path. DeviceAllow=/dev/snd would silently match nothing.
+DeviceAllow=char-alsa rw
+PrivateDevices=no
+
+[Install]
+WantedBy=multi-user.target
+EOF
+
 grep -q "^ExecStart=/usr/local/bin/halo-daemon ${DEVICE} ${PORT}$" \
     /etc/systemd/system/halo-daemon.service \
-    || { echo "ExecStart substitution failed — check systemd/halo-daemon.service" >&2; exit 1; }
+    || { echo "ExecStart substitution failed — check the generated unit" >&2; exit 1; }
 
-# Avahi is the entire discovery mechanism — halo-daemon does no mDNS itself,
-# it just drops a static service file in /etc/avahi/services/. Raspberry Pi
-# OS ships Avahi; minimal images (DietPi in particular) do not. Without it
-# the endpoint is fully functional but simply never appears in the app, with
-# no error on either side, which is a miserable thing to diagnose.
-# Checked two ways on purpose. `systemctl list-unit-files` can come back
-# without avahi for a moment right after apt has installed it — systemd is
-# still reloading — and a false "not installed" here sends the reader off
-# installing something they already have.
+# ---------------------------------------------------------------- avahi
 avahi_present() {
     command -v avahi-daemon >/dev/null 2>&1 && return 0
     systemctl list-unit-files 2>/dev/null | grep -q '^avahi-daemon\.service' && return 0
@@ -312,8 +351,7 @@ if ! avahi_present; then
     AVAHI_MISSING=1
     echo
     echo "WARNING: avahi-daemon is not installed."
-    echo "         The service file will still be written, but Audio Lounge"
-    echo "         will NOT discover this endpoint until Avahi is running."
+    echo "         Audio Lounge will NOT discover this endpoint until Avahi is running."
     echo "         DietPi:  dietpi-software install 152"
     echo "         Debian:  apt install avahi-daemon"
     echo
@@ -324,10 +362,28 @@ fi
 
 echo "==> Writing Avahi advertisement (port=$PORT)"
 mkdir -p /etc/avahi/services
-sed -E "s#<port>[0-9]+</port>#<port>${PORT}</port>#" \
-    avahi/halo-daemon.service > /etc/avahi/services/halo-daemon.service
-# Avahi picks up /etc/avahi/services changes on its own; no reload needed.
+cat > /etc/avahi/services/halo-daemon.service <<EOF
+<?xml version="1.0" standalone='no'?>
+<!DOCTYPE service-group SYSTEM "avahi-service.dtd">
+<!--
+  Static Avahi/mDNS service definition — this is the entire discovery
+  mechanism. Avahi watches /etc/avahi/services/ and advertises whatever
+  .service files it finds, picking up changes automatically.
 
+  %h expands to the machine's hostname, so multiple units on a LAN show up
+  with distinct, human-readable names instead of colliding.
+-->
+<service-group>
+  <name replace-wildcards="yes">HALO Endpoint on %h</name>
+  <service>
+    <type>_halo._tcp</type>
+    <port>${PORT}</port>
+    <txt-record>proto_version=1</txt-record>
+  </service>
+</service-group>
+EOF
+
+# ----------------------------------------------------------------- start
 echo "==> Enabling and starting"
 systemctl daemon-reload
 systemctl enable halo-daemon.service >/dev/null
@@ -336,7 +392,7 @@ systemctl restart halo-daemon.service
 sleep 1
 echo
 if systemctl is-active --quiet halo-daemon.service; then
-    echo "==> halo-daemon is running on ${DEVICE}, port ${PORT}"
+    echo "==> HALO Endpoint ${HALO_VERSION} is running on ${DEVICE}, port ${PORT}"
     echo
     systemctl --no-pager --lines=8 status halo-daemon.service || true
     echo
@@ -348,10 +404,18 @@ if systemctl is-active --quiet halo-daemon.service; then
         echo "    systemctl restart avahi-daemon"
     else
         echo "In Audio Lounge: Settings -> enable HALO, then pick"
-        echo "    \"HALO Audio Transport on $(hostname)\""
+        echo "    \"HALO Endpoint on $(hostname)\""
     fi
 else
-    echo "==> halo-daemon FAILED to start. Recent log:" >&2
-    journalctl -u halo-daemon --no-pager --lines=30 || true
+    echo "==> halo-daemon FAILED to start." >&2
+    journalctl -u halo-daemon --no-pager --lines=40 || true
+    echo >&2
+    echo "Troubleshooting:" >&2
+    echo "  1. Is the ALSA device present?  aplay -l" >&2
+    echo "     (the service is configured for ${DEVICE})" >&2
+    echo "  2. Try the binary directly (as root, to rule out the unit):" >&2
+    echo "     /usr/local/bin/halo-daemon ${DEVICE} ${PORT}" >&2
+    echo "  3. Is the port already in use?  ss -lntp | grep :${PORT} || true" >&2
+    echo "  4. Full live log:               journalctl -u halo-daemon -f" >&2
     exit 1
 fi
