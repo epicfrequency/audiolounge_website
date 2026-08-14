@@ -397,7 +397,7 @@ if systemctl is-active --quiet halo-daemon.service; then
     systemctl --no-pager --lines=8 status halo-daemon.service || true
     echo
     echo "Follow the live status line with:"
-    echo "    journalctl -u halo-daemon -f"
+    echo "    halo-log -f"
     echo
     if [ "${AVAHI_MISSING:-0}" -eq 1 ]; then
         echo "Discovery is NOT active (no avahi-daemon) — install it, then:"
@@ -416,6 +416,6 @@ else
     echo "  2. Try the binary directly (as root, to rule out the unit):" >&2
     echo "     /usr/local/bin/halo-daemon ${DEVICE} ${PORT}" >&2
     echo "  3. Is the port already in use?  ss -lntp | grep :${PORT} || true" >&2
-    echo "  4. Full live log:               halo-log -f" >&2
+    echo "  4. Full live log:               journalctl -u halo-daemon -f" >&2
     exit 1
 fi
