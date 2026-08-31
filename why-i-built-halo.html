@@ -58,7 +58,7 @@
 
 <p>Audio Lounge can decode the source, decide whether the path should remain native or use optional PCM upsampling, prepare DoP where appropriate, and expose those decisions in Transparent Audio Path. HALO extends the resulting stream to the endpoint. The endpoint’s job is to present that stream to the selected ALSA hardware device reliably.</p>
 
-<figure class="article-figure-wide"><img src="assets/mac-halo-settings.jpg" alt="HALO Network Transport settings in Audio Lounge"><figcaption>HALO output, endpoint selection, DSD mode, buffer, and upsampling remain part of Audio Lounge rather than a separate control application.</figcaption></figure>
+<figure class="article-figure-wide"><img src="assets/halo-network-architecture.svg" alt="Audio Lounge on Mac or iPad sends audio over the local network to a Raspberry Pi running HALO, then to a USB DAC"><figcaption>Audio Lounge remains the player. The HALO Endpoint on the Pi extends its high-resolution playback path to the USB DAC.</figcaption></figure>
 
 <h2>Why keep the endpoint intentionally small?</h2>
 
