@@ -17,7 +17,7 @@ Product structure:
 - FAQ: technical details and edge cases
 - Audio Lounge Air: Coming Soon
 
-HALO v1.2.0 binaries and binary-only installer are included.
+HALO v1.1.1 binaries and binary-only installer are included.
 
 Local preview:
     npx wrangler dev

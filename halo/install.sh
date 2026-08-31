@@ -22,7 +22,8 @@ set -euo pipefail
 # ------------------------------------------------------------------ config
 # Where the release artifacts live. Overridable for mirrors / staging.
 HALO_BASE_URL="${HALO_BASE_URL:-https://audiolounge.app/halo/releases}"
-# Empty means "resolve from $HALO_BASE_URL/latest.txt".
+# Resolve the current public binary release from latest.txt unless a version
+# is explicitly pinned by the caller.
 HALO_VERSION="${HALO_VERSION:-}"
 
 DEVICE=""

@@ -1,6 +1,6 @@
 # Audio Lounge 1.1 complete website
 
-This is a complete site snapshot, including the original PNG assets and HALO v1.2.0 binaries.
+This is a complete site snapshot, including the original PNG assets and HALO v1.1.1 binaries.
 
 Local preview:
     npx wrangler dev

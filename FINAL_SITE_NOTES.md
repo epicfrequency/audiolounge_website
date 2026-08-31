@@ -12,7 +12,7 @@ HALO explanatory visual:
 - HALO Settings is used to explain HALO.
 - Mac/iPad HALO Now Playing screenshots are used afterward as real playback proof, not as the primary explanation.
 
-HALO v1.2.0 release binaries and binary-only installer are included and checksums validated.
+HALO v1.1.1 release binaries and binary-only installer are included and checksums validated.
 
 Local preview:
     npx wrangler dev
