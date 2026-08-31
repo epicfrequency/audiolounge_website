@@ -12,6 +12,12 @@
 - [Help](https://audiolounge.app/help/): Support information.
 - [Blog](https://audiolounge.app/blog/): Product essays and release background.
 
+## Technical guides
+
+- [How to play SACD ISO on Mac and iPad](https://audiolounge.app/guides/play-sacd-iso-mac-ipad/): SACD ISO structure, DSD, DSF, stereo and multichannel playback paths.
+- [How to play DSD on Mac with a USB DAC](https://audiolounge.app/guides/play-dsd-on-mac/): DSD rates, DSF and DFF, Native DSD, DoP, DAC compatibility, and HALO.
+- [How to play music from a NAS on Mac and iPad](https://audiolounge.app/guides/play-music-from-nas-mac-ipad/): SMB, SMB Direct, library formats, USB DAC output, and HALO.
+
 ## Product facts
 
 - Audio Lounge organizes and plays a listener's own music library on Mac.

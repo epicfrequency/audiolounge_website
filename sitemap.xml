@@ -2,10 +2,10 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://audiolounge.app/</loc><lastmod>2026-08-31</lastmod></url>
   <url><loc>https://audiolounge.app/halo/</loc><lastmod>2026-08-31</lastmod></url>
-  <url><loc>https://audiolounge.app/smb/</loc><lastmod>2026-08-12</lastmod></url>
+  <url><loc>https://audiolounge.app/smb/</loc><lastmod>2026-08-31</lastmod></url>
   <url><loc>https://audiolounge.app/download/</loc><lastmod>2026-08-31</lastmod></url>
   <url><loc>https://audiolounge.app/faq/</loc><lastmod>2026-08-31</lastmod></url>
-  <url><loc>https://audiolounge.app/help/</loc><lastmod>2026-08-12</lastmod></url>
+  <url><loc>https://audiolounge.app/help/</loc><lastmod>2026-08-31</lastmod></url>
   <url><loc>https://audiolounge.app/privacy/</loc><lastmod>2026-07-26</lastmod></url>
   <url><loc>https://audiolounge.app/blog/</loc><lastmod>2026-08-31</lastmod></url>
   <url><loc>https://audiolounge.app/blog/memory-playback/</loc><lastmod>2026-08-31</lastmod></url>
@@ -13,4 +13,8 @@
   <url><loc>https://audiolounge.app/blog/introducing-audio-lounge-1-1/</loc><lastmod>2026-08-12</lastmod></url>
   <url><loc>https://audiolounge.app/blog/why-i-built-halo/</loc><lastmod>2026-08-31</lastmod></url>
   <url><loc>https://audiolounge.app/blog/a-lifetime-of-collecting-music/</loc><lastmod>2026-08-12</lastmod></url>
+  <url><loc>https://audiolounge.app/guides/</loc><lastmod>2026-08-31</lastmod></url>
+  <url><loc>https://audiolounge.app/guides/play-sacd-iso-mac-ipad/</loc><lastmod>2026-08-31</lastmod></url>
+  <url><loc>https://audiolounge.app/guides/play-dsd-on-mac/</loc><lastmod>2026-08-31</lastmod></url>
+  <url><loc>https://audiolounge.app/guides/play-music-from-nas-mac-ipad/</loc><lastmod>2026-08-31</lastmod></url>
 </urlset>
