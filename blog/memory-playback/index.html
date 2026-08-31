@@ -1,0 +1,79 @@
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="How Audio Lounge 1.1.1 rebuilt its playback engine around memory buffering for stable Hi-Res, DSD, NAS, USB DAC and HALO playback on macOS.">
+<link rel="canonical" href="https://audiolounge.app/blog/memory-playback/">
+<link rel="icon" href="../../assets/app-icon.png">
+<meta property="og:title" content="Memory Playback in Audio Lounge 1.1.1"><meta property="og:description" content="Why the rewritten Audio Lounge playback engine uses memory as a calm boundary between storage, decoding and the DAC."><meta property="og:type" content="article"><meta property="og:url" content="https://audiolounge.app/blog/memory-playback/"><meta property="og:site_name" content="Audio Lounge"><meta property="og:image" content="https://audiolounge.app/assets/audio-path.png"><meta property="og:image:alt" content="Transparent Audio Path in Audio Lounge"><meta property="article:published_time" content="2026-08-31"><meta property="article:modified_time" content="2026-08-31">
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Memory Playback in Audio Lounge 1.1.1"><meta name="twitter:description" content="Inside the memory-buffered playback engine behind Audio Lounge 1.1.1."><meta name="twitter:image" content="https://audiolounge.app/assets/audio-path.png">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Memory Playback: Inside the Audio Lounge 1.1.1 Playback Engine","description":"How Audio Lounge 1.1.1 rebuilt its playback engine around memory buffering for stable Hi-Res, DSD, NAS, USB DAC and HALO playback on macOS.","image":"https://audiolounge.app/assets/audio-path.png","datePublished":"2026-08-31","dateModified":"2026-08-31","mainEntityOfPage":"https://audiolounge.app/blog/memory-playback/","author":{"@type":"Organization","name":"Audio Lounge","url":"https://audiolounge.app/"},"publisher":{"@type":"Organization","name":"Audio Lounge","url":"https://audiolounge.app/","logo":{"@type":"ImageObject","url":"https://audiolounge.app/assets/app-icon.png"}}}</script>
+<title>Memory Playback in Audio Lounge 1.1.1</title><link rel="stylesheet" href="../../css/style.css">
+</head><body>
+<header class="site-header"><div class="container navbar"><a class="brand" href="/"><img src="../../assets/app-icon.png" alt=""><span>Audio Lounge</span></a><nav class="navlinks" aria-label="Primary navigation"><a href="/">Audio Lounge</a><a href="/halo/">HALO</a><a href="/blog/">Blog</a><a href="/help/">Help</a></nav><a class="store-button" href="/download/">Download</a></div></header>
+<main class="article-shell">
+<p class="eyebrow">Audio Lounge Blog · August 31, 2026 · 9 min read</p>
+<h1>Memory Playback: Inside the Audio Lounge 1.1.1 Playback Engine</h1>
+<p class="deck">The playback engine in Audio Lounge 1.1.1 was rewritten around a dual-buffer Memory Playback path—so storage and network activity can happen in bursts while music reaches the DAC as a steady, controlled stream.</p>
+<figure class="article-figure-wide"><img src="../../assets/audio-path.png" alt="Transparent Audio Path showing source, processing and output in Audio Lounge"></figure>
+
+<p class="article-section-lead">Memory Playback is already part of Audio Lounge 1.1.1. It is not a separate mode, an add-on, or a switch that asks you to manage the engine. It is built into the playback architecture.</p>
+
+<p>For listeners who have explored dedicated transports and memory players, the appeal is familiar: music should not depend on a disk, NAS, decoder and user interface all delivering work at perfectly regular intervals. A playback engine should absorb that unevenness before it reaches the time-sensitive output side of the system.</p>
+
+<div class="article-pullquote">Storage is bursty. Networks are variable. A DAC is continuous.<small>Memory is the boundary that lets each side work at the rhythm it was designed for.</small></div>
+
+<h2>Why rewrite the playback engine?</h2>
+
+<p>Audio Lounge now reaches music in more places than before: internal storage, external drives, SMB shares and NAS libraries. It can play ordinary PCM, Hi-Res PCM, DSF, DFF and SACD ISO. It can send audio directly to a USB DAC or extend that path across the network with <a href="/halo/">HALO</a>. It can preserve Native DSD, prepare DoP, match sample rates and optionally upsample PCM.</p>
+
+<p>Those capabilities cannot be treated as a collection of unrelated output options. They need one playback engine with explicit ownership of reading, decoding, buffering, track transitions and output state. Version 1.1.1 rebuilt that foundation.</p>
+
+<h2>What the memory buffer actually does</h2>
+
+<p>A file read is rarely a perfectly even flow. An SSD may return data in a quick burst. A NAS request may pause briefly and then arrive all at once. Decoding work varies with format and track. Meanwhile, an audio device consumes frames continuously at the selected sample rate.</p>
+
+<div class="article-flow">
+  <div class="article-flow-node"><strong>Music source</strong><small>Mac · drive · NAS</small></div><div class="article-flow-arrow">→</div>
+  <div class="article-flow-node"><strong>Decode + memory</strong><small>Read ahead · absorb variation</small></div><div class="article-flow-arrow">→</div>
+  <div class="article-flow-node"><strong>Audio output</strong><small>USB DAC · HALO</small></div>
+</div>
+
+<p>The memory buffer decouples those two clocks. The source and decoder can fill ahead when data is available; the output side consumes audio at the rate demanded by the DAC. A short delay in storage or network delivery does not immediately become a delay in playback.</p>
+
+<p>This matters especially for NAS playback. SMB Direct lets Audio Lounge read the library where it already lives, without mounting the share first. Memory buffering ensures that ordinary variations in that network read path are handled upstream of the audio output.</p>
+
+<h2>Memory Playback is more than loading a file into RAM</h2>
+
+<p>“Memory playback” is sometimes described as if the entire result comes from copying a track into RAM. The engineering is more interesting than that. Audio Lounge uses a dual-buffer design: while one buffer supplies the active track, the other can prepare what comes next. The engine can hand off at the real track boundary for gapless playback instead of waiting for storage or decoding work after the current track has ended.</p>
+
+<p>That same engine must define what happens when playback starts, pauses, seeks, skips, changes sample rate or switches output. A large buffer is not valuable if stopping feels slow, or if a seek allows stale audio to escape afterward. Memory Playback is part of a responsive state machine, not simply a cache.</p>
+
+<div class="article-principles">
+  <div class="article-principle"><strong>Stable supply.</strong><span>Reading and decoding can work ahead of the continuous output path.</span></div>
+  <div class="article-principle"><strong>Dual-buffer gapless.</strong><span>One buffer plays while the second prepares the next track for a precise handoff.</span></div>
+  <div class="article-principle"><strong>One engine.</strong><span>Local files, SMB Direct, USB DACs and HALO share the same playback model.</span></div>
+</div>
+
+<h2>What changes—and what does not</h2>
+
+<p>Memory buffering does not alter the musical data. When Audio Lounge reports a bit-perfect path, the samples sent to supported hardware remain the decoded samples from the source. Native DSD remains DSD when the selected path and compatible DAC support it. DoP packages DSD for a compatible PCM transport without converting the music to PCM. Optional PCM upsampling is separate and happens only when the listener chooses it.</p>
+
+<p>Nor is Memory Playback a claim that RAM has a special sound. Its direct job is concrete: isolate asynchronous file, network and decoding work from continuous audio delivery; create controlled headroom; and make the engine more resilient during real listening.</p>
+
+<p>Some listeners may value that architecture for sound-quality reasons. Everyone benefits from the less romantic outcomes: fewer interruptions, more reliable NAS playback, stronger gapless behavior and a playback system that remains stable through long sessions and output changes.</p>
+
+<h2>The same principle continues through HALO</h2>
+
+<p>HALO extends Audio Lounge’s playback path to a lightweight Linux endpoint beside the USB DAC. The Mac or iPad still owns the library, decoding, queue and output decisions. The endpoint receives the prepared stream and presents it to the selected ALSA hardware device.</p>
+
+<p>That endpoint has its own bounded memory ring buffers because a home network and a DAC also operate differently. A two-buffer handoff stages the next track and switches only when the current buffer drains, preserving true gapless playback. The principle is consistent from end to end: absorb ordinary variability before it reaches the device that must play continuously, without giving the endpoint a second library, decoder or playback UI.</p>
+
+<h2>Advanced underneath. Quiet on the surface.</h2>
+
+<p>Audio Lounge is meant to be an all-in-one home for an owned music collection on Mac and iPad: library organization, local and NAS access, Hi-Res and DSD decoding, Memory Playback, USB DAC control, optional upsampling and HALO network output. Very few players on macOS or iPadOS bring that entire path into one product. The 1.1.1 engine is the foundation that lets those advanced features behave as one.</p>
+
+<p>You should not need to supervise a buffer to enjoy it. Select an album, choose the DAC or HALO Endpoint, and press play. The sophistication belongs underneath; the listening experience should remain calm.</p>
+
+<p class="article-endnote"><a class="text-link" href="/blog/">← Back to the Audio Lounge Blog</a></p>
+</main>
+<footer class="site-footer"><div class="container footer-row"><div>© <span data-year></span> Audio Lounge.</div><div class="footer-links"><a href="/blog/">Blog</a><a href="/privacy/">Privacy</a></div></div></footer><script src="../../js/main.js"></script>
+</body></html>

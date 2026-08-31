@@ -1,0 +1,90 @@
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="A practical comparison of HALO Network Audio with Roon RAAT, UPnP/DLNA, HQPlayer NAA and Diretta—and why HALO is built directly into Audio Lounge.">
+<link rel="canonical" href="https://audiolounge.app/blog/halo-network-audio-compared/"><link rel="icon" href="../../assets/app-icon.png">
+<meta property="og:title" content="HALO vs Roon, UPnP, HQPlayer and Diretta"><meta property="og:description" content="Five network-audio architectures, five different priorities—and the all-in-one idea behind HALO."><meta property="og:type" content="article"><meta property="og:url" content="https://audiolounge.app/blog/halo-network-audio-compared/"><meta property="og:site_name" content="Audio Lounge"><meta property="og:image" content="https://audiolounge.app/assets/mac-halo-now-playing.jpg"><meta property="og:image:alt" content="Audio Lounge playing through a HALO Endpoint"><meta property="article:published_time" content="2026-08-31"><meta property="article:modified_time" content="2026-08-31">
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="HALO vs Roon, UPnP, HQPlayer and Diretta"><meta name="twitter:description" content="A practical guide to five very different network-audio designs."><meta name="twitter:image" content="https://audiolounge.app/assets/mac-halo-now-playing.jpg">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"HALO, Roon, UPnP, HQPlayer and Diretta: Five Paths to a Network DAC","description":"A practical comparison of HALO Network Audio with Roon RAAT, UPnP/DLNA, HQPlayer NAA and Diretta—and why HALO is built directly into Audio Lounge.","image":"https://audiolounge.app/assets/mac-halo-now-playing.jpg","datePublished":"2026-08-31","dateModified":"2026-08-31","mainEntityOfPage":"https://audiolounge.app/blog/halo-network-audio-compared/","author":{"@type":"Organization","name":"Audio Lounge","url":"https://audiolounge.app/"},"publisher":{"@type":"Organization","name":"Audio Lounge","url":"https://audiolounge.app/","logo":{"@type":"ImageObject","url":"https://audiolounge.app/assets/app-icon.png"}}}</script>
+<title>HALO vs Roon, UPnP, HQPlayer & Diretta</title><link rel="stylesheet" href="../../css/style.css">
+</head><body>
+<header class="site-header"><div class="container navbar"><a class="brand" href="/"><img src="../../assets/app-icon.png" alt=""><span>Audio Lounge</span></a><nav class="navlinks" aria-label="Primary navigation"><a href="/">Audio Lounge</a><a href="/halo/">HALO</a><a href="/blog/">Blog</a><a href="/help/">Help</a></nav><a class="store-button" href="/download/">Download</a></div></header>
+<main class="article-shell">
+<p class="eyebrow">Audio Lounge Blog · August 31, 2026 · 12 min read</p>
+<h1>HALO, Roon, UPnP, HQPlayer and Diretta</h1>
+<p class="deck">They can all put distance between a music player and a DAC. They do it with very different ideas about where the library, playback engine, processing and control should live.</p>
+<figure class="article-figure-wide"><img src="../../assets/mac-halo-now-playing.jpg" alt="Audio Lounge showing a HALO network playback path"></figure>
+
+<p class="article-section-lead">The useful question is not “which protocol wins?” It is “which system do you want to live in?” Network audio is architecture before it is a feature list.</p>
+
+<p>Roon is built around a central server and its ecosystem. UPnP/DLNA is an interoperable set of roles. HQPlayer centers sophisticated digital signal processing. Diretta focuses deeply on the behavior of the host-to-target transport. HALO begins with a narrower product decision: Audio Lounge should remain the player, and its existing audio path should be able to reach a USB DAC elsewhere on the local network.</p>
+
+<div class="article-pullquote">HALO does not ask you to assemble another playback system.<small>It makes network output part of the Audio Lounge you already use.</small></div>
+
+<h2>The short comparison</h2>
+
+<div class="article-compare">
+  <div class="article-compare-row"><h3>HALO</h3><p><strong>Audio Lounge is the center.</strong> Its library, queue, Memory Playback engine, format handling, optional PCM upsampling and output selection stay together. A lightweight HALO Endpoint adds its own memory-buffered, gapless output stage beside the USB DAC. Best suited to listeners who want one integrated Mac or iPad application for owned music, NAS access and high-resolution local-network playback.</p></div>
+  <div class="article-compare-row"><h3>Roon / RAAT</h3><p><strong>The Roon Server is the center.</strong> Roon separates Server, Control and Output, with RAAT connecting the server to endpoints. Its strengths include rich metadata, certified Roon Ready hardware, zones and synchronized multi-room playback. It is a broader server ecosystem, not simply a way for one player to reach one DAC.</p></div>
+  <div class="article-compare-row"><h3>UPnP / DLNA</h3><p><strong>Interoperable roles are the center.</strong> A MediaServer exposes content, a Control Point chooses it and a MediaRenderer plays it. Components can come from different vendors. That flexibility is the attraction, although supported formats, gapless behavior and control can vary with the particular server, controller and renderer combination.</p></div>
+  <div class="article-compare-row"><h3>HQPlayer / NAA</h3><p><strong>DSP is the center.</strong> HQPlayer is designed around advanced filters, modulators, convolution and conversion choices, while a Network Audio Adapter can keep the output device lightweight and close to the DAC. It is the natural fit when deep user-controlled signal processing is the primary purpose of the system.</p></div>
+  <div class="article-compare-row"><h3>Diretta</h3><p><strong>The host-to-target transport is the center.</strong> Diretta sends small packets at short, regular intervals and aims to keep target processing and power demand steady. It can integrate with compatible host software and dedicated target hardware. Its philosophy reaches further into transport timing and endpoint electrical behavior than HALO’s product-specific design.</p></div>
+</div>
+
+<h2>Roon: a complete server ecosystem</h2>
+
+<p>Roon’s own architecture describes three roles: <a href="https://help.roonlabs.com/portal/en/kb/articles/architecture" rel="noopener">Server, Control and Output</a>. The server owns the music library and playback intelligence; control devices operate it; RAAT carries audio to output devices. <a href="https://help.roonlabs.com/portal/en/kb/articles/raat" rel="noopener">RAAT</a> is designed for bit-perfect transport, device discovery, high-resolution PCM and DSD, and synchronized playback across zones.</p>
+
+<p>That structure is powerful when the goal is to make Roon the center of a whole-home music system. It also means adopting a server as the authoritative library and playback engine.</p>
+
+<p>HALO makes a different trade. There is no separate core for the HALO Endpoint to consult. Audio Lounge on the Mac or iPad remains the application the listener browses, searches, queues and plays from. HALO extends its output; it does not replace its library or engine.</p>
+
+<h2>UPnP/DLNA: flexibility through separation</h2>
+
+<p>The <a href="https://openconnectivity.org/developer/specifications/upnp-resources/upnp/" rel="noopener">UPnP AV architecture</a> separates media storage, control and rendering. That makes it possible to mix a server from one vendor, a control app from another and a renderer from a third. Few network-audio approaches offer broader choice.</p>
+
+<p>The same flexibility makes the final experience dependent on the combination. Format negotiation, seeking, gapless transitions, queue ownership and DSD support are not guaranteed to feel identical across renderers.</p>
+
+<p>Audio Lounge already has an owned-music library, queue, decoder and playback engine. HALO avoids translating that product into a second generic media model just to reach the DAC. Endpoint discovery and selection happen directly inside Audio Lounge.</p>
+
+<h2>HQPlayer: processing as the destination</h2>
+
+<p><a href="https://signalyst.com/" rel="noopener">HQPlayer</a> is built for listeners who want to explore sophisticated digital processing: selectable oversampling filters, noise shapers, modulators, convolution and high-rate PCM or DSD output. Its Network Audio Daemon/NAA arrangement moves the final output stage to a lightweight network device.</p>
+
+<p>That makes HQPlayer and NAA conceptually close to HALO in one respect: important work stays with the main application while a focused endpoint sits beside the DAC. The product priorities are different. HQPlayer makes fine-grained DSP choice the main event. Audio Lounge includes optional PCM upsampling, but its larger goal is an elegant all-in-one experience for browsing, organizing and faithfully playing a personal library.</p>
+
+<h2>Diretta: the network transport as an audiophile component</h2>
+
+<p><a href="https://www.diretta.link/" rel="noopener">Diretta</a> also uses a Host and Target, but its design centers on sending packets at frequent, regular intervals. Diretta describes this as a way to average processing and power-consumption fluctuations at the Target. Its ecosystem includes compatible software, target devices and implementations intended for dedicated audiophile systems.</p>
+
+<p>That is a serious and distinct engineering philosophy. HALO does not claim to reproduce it. HALO uses bounded buffering to absorb normal network variability and keep the ALSA output supplied; it does not make claims about packet cadence changing the analog performance of a DAC.</p>
+
+<p>The practical distinction is equally important on macOS. HALO is implemented directly as an Audio Lounge output path. The listener does not need to make a network target appear as a system-wide audio device or assemble a compatible host chain.</p>
+
+<h2>What is specifically different about HALO?</h2>
+
+<figure class="article-figure-wide"><img src="../../assets/mac-halo-settings.jpg" alt="HALO Endpoint and DSD settings selected directly in Audio Lounge"><figcaption>The HALO Endpoint, DSD mode, buffering and optional upsampling are selected inside Audio Lounge.</figcaption></figure>
+
+<div class="article-principles">
+  <div class="article-principle"><strong>One product.</strong><span>Library, SMB Direct, queue, Memory Playback, decoding and output selection live in Audio Lounge.</span></div>
+  <div class="article-principle"><strong>An advanced endpoint.</strong><span>The Linux endpoint uses memory ring buffers and a two-buffer gapless handoff, without adding a second library, resampler or player UI.</span></div>
+  <div class="article-principle"><strong>A visible path.</strong><span>Transparent Audio Path shows the source format, processing, destination and final sample rate.</span></div>
+</div>
+
+<p>Audio Lounge prepares the output. The HALO Endpoint advertises the formats and rates the attached DAC can accept, receives the stream into memory ring buffers and writes it to the selected ALSA hardware device. Its two-buffer design can stage the next track before the current one finishes, then switch only when the active buffer drains—the exact boundary needed for true gapless playback.</p>
+
+<p>Compatible endpoint hardware and DACs can receive bit-perfect PCM, DoP, or Native DSD up to DSD512 without converting the DSD playback path to PCM. Optional PCM upsampling remains an explicit Audio Lounge choice. That combination of memory-buffered transport, gapless playback and Native DSD is unusually complete for a network endpoint built directly into a Mac and iPad music player.</p>
+
+<p>HALO is intentionally point-to-point rather than multi-room. It is intentionally tied to Audio Lounge rather than designed as a universal renderer. Those are limits, and they are also how the experience remains coherent.</p>
+
+<h2>Which one is right for you?</h2>
+
+<p>Choose Roon when a rich server-centered library, certified endpoint ecosystem and multi-room playback are central. Choose UPnP/DLNA when mixing interoperable servers, controllers and renderers matters most. Choose HQPlayer when advanced DSP and conversion are the reason for building the system. Explore Diretta when transport cadence, dedicated targets and endpoint electrical behavior are the focus.</p>
+
+<p>Choose HALO when you want Audio Lounge to be the one place for the music you own—local files and NAS libraries, Memory Playback, Hi-Res PCM, Native DSD, USB DACs and network output—without placing another music server or playback application in the middle.</p>
+
+<p>That all-in-one approach is rare on macOS and iPadOS. It is also the simplest explanation of why HALO exists.</p>
+
+<p class="article-endnote"><a class="text-link" href="/blog/">← Back to the Audio Lounge Blog</a></p>
+</main>
+<footer class="site-footer"><div class="container footer-row"><div>© <span data-year></span> Audio Lounge.</div><div class="footer-links"><a href="/blog/">Blog</a><a href="/privacy/">Privacy</a></div></div></footer><script src="../../js/main.js"></script>
+</body></html>
