@@ -1,7 +1,16 @@
 {
   "name": "winter-shape-6612",
   "compatibility_date": "2026-07-24",
+  "main": "src/worker.mjs",
   "assets": {
-    "directory": "."
-  }
+    "directory": ".",
+    "binding": "ASSETS",
+    "run_worker_first": ["/halo/releases/*"]
+  },
+  "analytics_engine_datasets": [
+    {
+      "binding": "HALO_DOWNLOADS",
+      "dataset": "halo_downloads"
+    }
+  ]
 }
