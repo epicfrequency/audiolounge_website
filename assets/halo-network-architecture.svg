@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">HALO Network Audio architecture</title>
+  <desc id="desc">Audio Lounge on Mac or iPad sends audio over the local network to a Raspberry Pi running the HALO Endpoint, which outputs to a USB DAC.</desc>
+  <defs>
+    <style>
+      .label{font:600 30px -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#202124}
+      .small{font:500 22px -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#6f7378}
+      .tiny{font:600 18px -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#71767c;letter-spacing:1.8px}
+      .card{fill:#fff;stroke:#d9dde1;stroke-width:2}
+      .device{fill:none;stroke:#30343a;stroke-width:5;stroke-linecap:round;stroke-linejoin:round}
+      .route{fill:none;stroke:#1683f3;stroke-width:7;stroke-linecap:round;stroke-linejoin:round}
+    </style>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="9" refY="6" orient="auto">
+      <path d="M1 1l9 5-9 5z" fill="#1683f3"/>
+    </marker>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f8f9fa"/><stop offset="1" stop-color="#eef1f3"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1600" height="900" rx="48" fill="url(#bg)"/>
+  <text x="800" y="92" text-anchor="middle" class="tiny">HALO NETWORK AUDIO</text>
+  <text x="800" y="139" text-anchor="middle" class="label">One player. One local network path. One DAC.</text>
+
+  <!-- Audio Lounge source card -->
+  <rect class="card" x="72" y="236" width="390" height="470" rx="34"/>
+  <text x="267" y="292" text-anchor="middle" class="tiny">AUDIO LOUNGE</text>
+  <!-- Mac -->
+  <rect class="device" x="124" y="343" width="186" height="116" rx="10"/>
+  <path class="device" d="M107 481h220M173 481l-14 29h116l-14-29"/>
+  <text x="217" y="552" text-anchor="middle" class="label">Mac</text>
+  <!-- iPad -->
+  <rect class="device" x="341" y="343" width="75" height="116" rx="12"/>
+  <circle cx="378.5" cy="444" r="3.5" fill="#30343a"/>
+  <text x="378" y="552" text-anchor="middle" class="label">iPad</text>
+  <text x="267" y="623" text-anchor="middle" class="small">Library · Memory Playback</text>
+  <text x="267" y="658" text-anchor="middle" class="small">PCM · DoP · Native DSD</text>
+
+  <!-- Local network -->
+  <path class="route" d="M462 471h244" marker-end="url(#arrow)"/>
+  <rect x="500" y="376" width="190" height="62" rx="31" fill="#e5f2ff" stroke="#91c8ff" stroke-width="2"/>
+  <text x="595" y="416" text-anchor="middle" class="small" fill="#116fc8">LOCAL NETWORK</text>
+  <path d="M544 344c29-30 73-30 102 0M566 364c17-17 41-17 58 0" fill="none" stroke="#1683f3" stroke-width="5" stroke-linecap="round"/>
+  <circle cx="595" cy="382" r="5" fill="#1683f3"/>
+
+  <!-- HALO Endpoint card -->
+  <rect class="card" x="724" y="236" width="400" height="470" rx="34"/>
+  <text x="924" y="292" text-anchor="middle" class="tiny">RASPBERRY PI</text>
+  <rect x="798" y="342" width="252" height="159" rx="22" fill="#24272c"/>
+  <circle cx="839" cy="382" r="8" fill="#48b36b"/>
+  <path d="M853 382h144M839 418h158M839 454h106" stroke="#6c737b" stroke-width="7" stroke-linecap="round"/>
+  <rect x="1017" y="376" width="18" height="52" rx="5" fill="#1683f3"/>
+  <text x="924" y="557" text-anchor="middle" class="label">HALO Endpoint</text>
+  <text x="924" y="605" text-anchor="middle" class="small">Memory-buffered · Gapless</text>
+  <text x="924" y="640" text-anchor="middle" class="small">Bit-perfect · Native DSD512</text>
+
+  <!-- Single output path -->
+  <path class="route" d="M1124 471h213" marker-end="url(#arrow)"/>
+  <text x="1230" y="438" text-anchor="middle" class="small">USB</text>
+
+  <!-- DAC -->
+  <rect class="card" x="1356" y="337" width="184" height="268" rx="32"/>
+  <rect class="device" x="1392" y="400" width="112" height="89" rx="15"/>
+  <circle class="device" cx="1474" cy="444" r="20"/>
+  <circle cx="1413" cy="444" r="5" fill="#48b36b"/>
+  <text x="1448" y="551" text-anchor="middle" class="label">USB DAC</text>
+
+  <text x="800" y="797" text-anchor="middle" class="small">Audio Lounge remains the player. HALO extends its playback path to the DAC.</text>
+</svg>
