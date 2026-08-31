@@ -1,4 +1,4 @@
-# Audio Lounge 1.1 complete website
+# Audio Lounge 1.1.1 complete website
 
 This is a complete site snapshot, including the original PNG assets and HALO v1.1.1 binaries.
 
@@ -17,4 +17,4 @@ Primary routes:
 HALO installer:
     curl -fsSL https://audiolounge.app/halo/install.sh | sudo bash
 
-Audio Lounge Air remains marked Coming Soon until App Store approval.
+Audio Lounge Air 1.1.1 is available on the iPad App Store.

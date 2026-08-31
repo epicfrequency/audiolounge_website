@@ -16,16 +16,7 @@ Allow: /
 User-agent: PerplexityBot
 Allow: /
 
-User-agent: Googlebot
-Allow: /
-
-User-agent: Bingbot
-Allow: /
-
 User-agent: *
 Allow: /
 
 Sitemap: https://audiolounge.app/sitemap.xml
-
-User-agent: *
-Disallow: /download/

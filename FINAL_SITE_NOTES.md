@@ -1,4 +1,4 @@
-# Audio Lounge 1.1 — full polished site
+# Audio Lounge 1.1.1 — full polished site
 
 Final information architecture:
 - Home: explains the three major 1.1 changes immediately.

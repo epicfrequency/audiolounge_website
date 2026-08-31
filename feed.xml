@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<rss version="2.0"><channel>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel>
 <title>Audio Lounge Blog</title>
 <link>https://audiolounge.app/blog/</link>
 <description>Notes on music, listening, and Audio Lounge.</description>
-<item><title>Introducing Audio Lounge 1.1</title><link>https://audiolounge.app/blog/introducing-audio-lounge-1-1/</link><guid>https://audiolounge.app/blog/introducing-audio-lounge-1-1/</guid><description>Why SMB Direct, HALO Network Audio, and Audio Lounge Air belong together.</description></item>
-<item><title>Why I Built HALO</title><link>https://audiolounge.app/blog/why-i-built-halo/</link><guid>https://audiolounge.app/blog/why-i-built-halo/</guid><description>Why Audio Lounge needed its own network audio path—and why HALO is deliberately small.</description></item>
-<item><title>A Lifetime of Collecting Music</title><link>https://audiolounge.app/blog/a-lifetime-of-collecting-music/</link><guid>https://audiolounge.app/blog/a-lifetime-of-collecting-music/</guid></item>
+<atom:link href="https://audiolounge.app/feed.xml" rel="self" type="application/rss+xml" />
+<language>en-us</language>
+<lastBuildDate>Sun, 31 Aug 2026 00:00:00 GMT</lastBuildDate>
+<item><title>Introducing Audio Lounge 1.1.1</title><link>https://audiolounge.app/blog/introducing-audio-lounge-1-1/</link><guid>https://audiolounge.app/blog/introducing-audio-lounge-1-1/</guid><pubDate>Wed, 12 Aug 2026 00:00:00 GMT</pubDate><description>Why SMB Direct, HALO Network Audio, and Audio Lounge Air belong together.</description></item>
+<item><title>Why I Built HALO</title><link>https://audiolounge.app/blog/why-i-built-halo/</link><guid>https://audiolounge.app/blog/why-i-built-halo/</guid><pubDate>Wed, 12 Aug 2026 00:00:00 GMT</pubDate><description>Why Audio Lounge needed its own network audio path—and why HALO is deliberately small.</description></item>
+<item><title>A Lifetime of Collecting Music</title><link>https://audiolounge.app/blog/a-lifetime-of-collecting-music/</link><guid>https://audiolounge.app/blog/a-lifetime-of-collecting-music/</guid><pubDate>Sat, 25 Jul 2026 00:00:00 GMT</pubDate><description>A personal story about collecting music and the beginnings of Audio Lounge.</description></item>
 </channel></rss>

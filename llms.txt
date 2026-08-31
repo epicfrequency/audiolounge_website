@@ -1,0 +1,38 @@
+# Audio Lounge
+
+> Audio Lounge is a music player for people who own and care about their music. Audio Lounge 1.1.1 is available for Mac, and the newly launched Audio Lounge Air 1.1.1 is available for iPad.
+
+## Official pages
+
+- [Audio Lounge](https://audiolounge.app/): Product overview and current release.
+- [Download](https://audiolounge.app/download/): Official App Store links for Mac and iPad.
+- [HALO Network Audio](https://audiolounge.app/halo/): Product details and the official HALO Endpoint setup guide.
+- [SMB Direct](https://audiolounge.app/smb/): Official SMB Direct setup guide.
+- [FAQ](https://audiolounge.app/faq/): Supported formats, playback behavior, HALO, and SMB Direct.
+- [Help](https://audiolounge.app/help/): Support information.
+- [Blog](https://audiolounge.app/blog/): Product essays and release background.
+
+## Product facts
+
+- Audio Lounge organizes and plays a listener's own music library on Mac.
+- Audio Lounge Air brings the full Audio Lounge experience to iPadOS and is available from https://apps.apple.com/us/app/audio-lounge-air/id6797962758.
+- Supported formats include FLAC, ALAC, WAV, AIFF, APE, WavPack, AAC, MP3, CUE, DSF, DFF, and SACD ISO.
+- Audio Lounge supports gapless playback, automatic sample-rate matching, optional PCM upsampling, and Native DSD or DoP output with compatible USB DACs.
+- SMB Direct connects Audio Lounge directly to a NAS or SMB share.
+- HALO is Audio Lounge's high-resolution local-network audio path to a lightweight Linux endpoint beside a USB DAC.
+- HALO supports bit-perfect PCM, DoP, optional PCM upsampling, and Native DSD up to DSD512 with compatible endpoint hardware and DACs.
+- When supported by the endpoint and DAC, HALO can preserve the Native DSD playback path without converting it to PCM.
+- The HALO Endpoint or USB DAC is selected directly inside Audio Lounge.
+- HALO Endpoint supports Linux ARM64 and x86_64, including DietPi, Raspberry Pi OS 64-bit, and Ubuntu.
+- HALO Endpoint uses a binary-only installer; users do not clone the source repository or compile the daemon.
+- Music stays on the listener's Mac, external drive, or network storage; Audio Lounge does not require a cloud upload or account.
+
+## Installation
+
+The canonical HALO setup guide is https://audiolounge.app/halo/.
+
+The official installer command is:
+
+```sh
+curl -fsSL https://audiolounge.app/halo/install.sh | sudo bash
+```

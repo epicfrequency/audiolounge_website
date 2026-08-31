@@ -1,1 +1,14 @@
-<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><url><loc>https://audiolounge.app/</loc></url><url><loc>https://audiolounge.app/halo/</loc></url><url><loc>https://audiolounge.app/smb/</loc></url><url><loc>https://audiolounge.app/download/</loc></url><url><loc>https://audiolounge.app/faq/</loc></url><url><loc>https://audiolounge.app/support/</loc></url><url><loc>https://audiolounge.app/privacy/</loc></url><url><loc>https://audiolounge.app/blog/</loc></url><url><loc>https://audiolounge.app/blog/introducing-audio-lounge-1-1/</loc></url><url><loc>https://audiolounge.app/blog/why-i-built-halo/</loc></url><url><loc>https://audiolounge.app/blog/a-lifetime-of-collecting-music/</loc></url></urlset>
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://audiolounge.app/</loc><lastmod>2026-08-31</lastmod></url>
+  <url><loc>https://audiolounge.app/halo/</loc><lastmod>2026-08-31</lastmod></url>
+  <url><loc>https://audiolounge.app/smb/</loc><lastmod>2026-08-12</lastmod></url>
+  <url><loc>https://audiolounge.app/download/</loc><lastmod>2026-08-31</lastmod></url>
+  <url><loc>https://audiolounge.app/faq/</loc><lastmod>2026-08-31</lastmod></url>
+  <url><loc>https://audiolounge.app/help/</loc><lastmod>2026-08-12</lastmod></url>
+  <url><loc>https://audiolounge.app/privacy/</loc><lastmod>2026-07-26</lastmod></url>
+  <url><loc>https://audiolounge.app/blog/</loc><lastmod>2026-08-12</lastmod></url>
+  <url><loc>https://audiolounge.app/blog/introducing-audio-lounge-1-1/</loc><lastmod>2026-08-12</lastmod></url>
+  <url><loc>https://audiolounge.app/blog/why-i-built-halo/</loc><lastmod>2026-08-31</lastmod></url>
+  <url><loc>https://audiolounge.app/blog/a-lifetime-of-collecting-music/</loc><lastmod>2026-08-12</lastmod></url>
+</urlset>
