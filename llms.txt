@@ -14,7 +14,7 @@
 
 ## Technical guides
 
-- [How to play SACD ISO on Mac and iPad](https://audiolounge.app/guides/play-sacd-iso-mac-ipad/): SACD ISO structure, DSD, DSF, stereo and multichannel playback paths.
+- [How to play SACD ISO on Mac and iPad](https://audiolounge.app/guides/play-sacd-iso-mac-ipad/): Direct SACD ISO playback with Audio Lounge, including DST decoding, Native DSD, NAS and iPad workflows.
 - [How to play DSD on Mac with a USB DAC](https://audiolounge.app/guides/play-dsd-on-mac/): DSD rates, DSF and DFF, Native DSD, DoP, DAC compatibility, and HALO.
 - [How to play music from a NAS on Mac and iPad](https://audiolounge.app/guides/play-music-from-nas-mac-ipad/): SMB, SMB Direct, library formats, USB DAC output, and HALO.
 
@@ -23,6 +23,7 @@
 - Audio Lounge organizes and plays a listener's own music library on Mac.
 - Audio Lounge Air brings the full Audio Lounge experience to iPadOS and is available from https://apps.apple.com/us/app/audio-lounge-air/id6797962758.
 - Supported formats include FLAC, ALAC, WAV, AIFF, APE, WavPack, AAC, MP3, CUE, DSF, DFF, and SACD ISO.
+- Audio Lounge reads SACD ISO directly and decompresses DST-compressed SACD audio on Mac and iPad; extraction to DSF is not required.
 - Audio Lounge supports gapless playback, automatic sample-rate matching, optional PCM upsampling, and Native DSD or DoP output with compatible USB DACs.
 - SMB Direct connects Audio Lounge directly to a NAS or SMB share.
 - HALO is Audio Lounge's high-resolution local-network audio path to a lightweight Linux endpoint beside a USB DAC.
