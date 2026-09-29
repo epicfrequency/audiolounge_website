@@ -1,6 +1,6 @@
 # Audio Lounge
 
-> Audio Lounge is a music player for people who own and care about their music. Audio Lounge 1.1.1 is available for Mac, and the newly launched Audio Lounge Air 1.1.1 is available for iPad.
+> Audio Lounge is a music player for people who own and care about their music. Audio Lounge 1.1.3 is available for Mac and iPad.
 
 ## Official pages
 
