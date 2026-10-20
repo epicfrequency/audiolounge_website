@@ -22,8 +22,7 @@ set -euo pipefail
 # ------------------------------------------------------------------ config
 # Where the release artifacts live. Overridable for mirrors / staging.
 HALO_BASE_URL="${HALO_BASE_URL:-https://audiolounge.app/halo/releases}"
-# Resolve the current public binary release from latest.txt unless a version
-# is explicitly pinned by the caller.
+# Empty means "resolve from $HALO_BASE_URL/latest.txt".
 HALO_VERSION="${HALO_VERSION:-}"
 
 DEVICE=""
@@ -76,8 +75,29 @@ command -v systemctl >/dev/null 2>&1 \
     || { echo "systemd (systemctl) was not found — HALO Endpoint requires a systemd distro." >&2; exit 1; }
 
 # ------------------------------------------------------- runtime deps only
+# Minimal images may have D-Bus installed without a running system bus.
+start_system_bus() {
+    echo "==> Starting D-Bus (needed by Avahi)"
+    # dbus.service can be static; starting it also activates its socket.
+    if ! systemctl start dbus.service || ! systemctl is-active --quiet dbus.service; then
+        echo "D-Bus failed to start; discovery cannot run." >&2
+        systemctl --no-pager --lines=20 status dbus.service dbus.socket >&2 || true
+        exit 1
+    fi
+}
+
 ensure_runtime_dependencies() {
     local missing=()
+    # Utilities used for installation, service accounts and diagnostics.
+    local utility package
+    for utility in cat chmod dirname head install mkdir mktemp od rm sleep tr uname sha256sum; do
+        command -v "$utility" >/dev/null 2>&1 || missing+=(coreutils)
+    done
+    for package in grep:grep sed:sed find:findutils hostname:hostname groupadd:passwd useradd:passwd usermod:passwd getent:libc-bin ldconfig:libc-bin; do
+        utility=${package%%:*}
+        command -v "$utility" >/dev/null 2>&1 || missing+=("${package#*:}")
+    done
+    command -v dbus-daemon >/dev/null 2>&1 || missing+=(dbus)
     command -v curl >/dev/null 2>&1 || missing+=(curl)
     # The daemon links libasound.so.2; check the soname via ldconfig rather
     # than a package name (Debian trixie renamed libasound2 -> libasound2t64).
@@ -92,6 +112,7 @@ ensure_runtime_dependencies() {
 
     if [ ${#missing[@]} -eq 0 ]; then
         echo "==> Runtime dependencies present"
+        start_system_bus
         return 0
     fi
 
@@ -115,6 +136,11 @@ ensure_runtime_dependencies() {
 
     echo "==> Installing runtime packages: ${uniq[*]}"
     apt-get update -qq
+    # Configure and start the system bus before Avahi's package hooks run.
+    if ! command -v dbus-daemon >/dev/null 2>&1; then
+        DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends dbus
+    fi
+    start_system_bus
     DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends "${uniq[@]}"
 }
 
@@ -273,6 +299,8 @@ echo "==> Capabilities reported by $DEVICE"
 aplay --dump-hw-params -D "$DEVICE" /dev/null 2>&1 | sed -n '/FORMAT:/,/^$/p' || true
 
 # ------------------------------------------------------------------ user
+# Some minimal systems do not create the audio group until ALSA is installed.
+getent group audio >/dev/null 2>&1 || groupadd --system audio
 if ! id -u halo >/dev/null 2>&1; then
     echo "==> Creating system user 'halo'"
     useradd --system --no-create-home --shell /usr/sbin/nologin halo
@@ -343,22 +371,11 @@ grep -q "^ExecStart=/usr/local/bin/halo-daemon ${DEVICE} ${PORT}$" \
     || { echo "ExecStart substitution failed — check the generated unit" >&2; exit 1; }
 
 # ---------------------------------------------------------------- avahi
-avahi_present() {
-    command -v avahi-daemon >/dev/null 2>&1 && return 0
-    systemctl list-unit-files 2>/dev/null | grep -q '^avahi-daemon\.service' && return 0
-    return 1
-}
-if ! avahi_present; then
-    AVAHI_MISSING=1
-    echo
-    echo "WARNING: avahi-daemon is not installed."
-    echo "         Audio Lounge will NOT discover this endpoint until Avahi is running."
-    echo "         DietPi:  dietpi-software install 152"
-    echo "         Debian:  apt install avahi-daemon"
-    echo
-elif ! systemctl is-active --quiet avahi-daemon 2>/dev/null; then
-    echo "==> Enabling avahi-daemon (needed for discovery)"
-    systemctl enable --now avahi-daemon || true
+echo "==> Enabling avahi-daemon (needed for discovery)"
+if ! systemctl enable --now avahi-daemon.service || ! systemctl is-active --quiet avahi-daemon.service; then
+    echo "Avahi failed to start; Audio Lounge cannot discover this endpoint." >&2
+    systemctl --no-pager --lines=20 status avahi-daemon.service >&2 || true
+    exit 1
 fi
 
 echo "==> Writing Avahi advertisement (port=$PORT)"
@@ -398,15 +415,10 @@ if systemctl is-active --quiet halo-daemon.service; then
     systemctl --no-pager --lines=8 status halo-daemon.service || true
     echo
     echo "Follow the live status line with:"
-    echo "    halo-log -f"
+    echo "    journalctl -u halo-daemon -f"
     echo
-    if [ "${AVAHI_MISSING:-0}" -eq 1 ]; then
-        echo "Discovery is NOT active (no avahi-daemon) — install it, then:"
-        echo "    systemctl restart avahi-daemon"
-    else
-        echo "In Audio Lounge: Settings -> enable HALO, then pick"
-        echo "    \"HALO Endpoint on $(hostname)\""
-    fi
+    echo "In Audio Lounge: Settings -> enable HALO, then pick"
+    echo "    \"HALO Audio Transport on $(hostname)\""
 else
     echo "==> halo-daemon FAILED to start." >&2
     journalctl -u halo-daemon --no-pager --lines=40 || true
