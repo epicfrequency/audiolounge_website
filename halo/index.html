@@ -198,19 +198,7 @@
 <div class="guide-block" id="trouble"><p class="kicker">Troubleshooting</p><h2>Quick checks.</h2>
 <h3>HALO service</h3><pre class="codebox"><code>systemctl status halo-daemon --no-pager
 journalctl -u halo-daemon -n 50 --no-pager</code></pre>
-<h3>Network discovery</h3>
-<p>On DietPi / Debian, first install the discovery utility before running <code>avahi-browse</code>. Run these commands as root; otherwise prefix the installation commands with <code>sudo</code>.</p>
-<pre class="codebox"><code>apt-get update
-apt-get install -y avahi-utils</code></pre>
-<p>Then check the Avahi service and discover HALO Endpoints:</p>
-<pre class="codebox"><code>systemctl status avahi-daemon --no-pager
-avahi-browse -rt _halo._tcp</code></pre>
-<p>If the next error says the Avahi daemon or D-Bus is not running, install and start the services, then retry:</p>
-<pre class="codebox"><code>apt-get install -y dbus avahi-daemon
-systemctl start dbus
-systemctl enable --now avahi-daemon
-avahi-browse -rt _halo._tcp</code></pre>
-<p>A line beginning with <code>=</code>, including an address and port, means a HALO service was discovered and resolved. If no service appears, check the HALO service status above and the network settings below.</p>
+<h3>Network connection</h3>
 <p>Make sure Audio Lounge and HALO Endpoint are on the same LAN and that guest Wi‑Fi/client isolation is not enabled. On iPad, allow Audio Lounge access to the Local Network.</p></div>
 
 <div class="guide-block"><p>Curious why HALO exists? <a class="text-link" href="/blog/why-i-built-halo/">Read “Why I Built HALO” →</a></p></div>
