@@ -198,12 +198,12 @@
 <div class="guide-block" id="trouble"><p class="kicker">Troubleshooting</p><h2>Quick checks.</h2>
 <h3>HALO service</h3><pre class="codebox"><code>systemctl status halo-daemon --no-pager
 journalctl -u halo-daemon -n 50 --no-pager</code></pre>
-<h3>Network discovery</h3><pre class="codebox"><code>systemctl status avahi-daemon
-avahi-browse -r _halo._tcp</code></pre>
-<h3>“avahi-browse: command not found” on DietPi / Debian</h3>
-<p>The discovery utility is missing. This message alone does not mean the HALO service has failed. Install <code>avahi-utils</code>, then check discovery again. Run these commands as root; otherwise prefix the installation commands with <code>sudo</code>.</p>
+<h3>Network discovery</h3>
+<p>On DietPi / Debian, first install the discovery utility before running <code>avahi-browse</code>. Run these commands as root; otherwise prefix the installation commands with <code>sudo</code>.</p>
 <pre class="codebox"><code>apt-get update
-apt-get install -y avahi-utils
+apt-get install -y avahi-utils</code></pre>
+<p>Then check the Avahi service and discover HALO Endpoints:</p>
+<pre class="codebox"><code>systemctl status avahi-daemon --no-pager
 avahi-browse -rt _halo._tcp</code></pre>
 <p>If the next error says the Avahi daemon or D-Bus is not running, install and start the services, then retry:</p>
 <pre class="codebox"><code>apt-get install -y dbus avahi-daemon
