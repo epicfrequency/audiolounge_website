@@ -1394,7 +1394,19 @@ body{overflow-x:hidden}
 .air-device-iphone img{border-radius:22px;box-shadow:0 20px 60px rgba(0,0,0,.09)}
 .air-device-duo img{transform:translateY(2.4%)}
 .air-device figcaption{align-self:start;margin:0;color:var(--quiet);font-size:14px;line-height:1.45;text-align:center}
-@media(max-width:820px){.air-device-showcase{grid-template-columns:1fr;grid-template-rows:auto;row-gap:34px}.air-device{display:block;grid-row:auto}.air-device img{width:auto;max-width:100%;max-height:680px;margin-inline:auto}.air-device figcaption{margin-top:12px}}
+.iphone-gallery-heading{margin-top:72px;padding-top:56px;border-top:1px solid var(--line)}
+.iphone-gallery-heading .kicker{margin-bottom:10px}
+.iphone-gallery-heading h3{font-size:clamp(30px,3.5vw,46px);line-height:1.08}
+.iphone-gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:32px}
+.iphone-gallery figure{margin:0;min-width:0}
+.iphone-gallery img{display:block;width:100%;height:auto;border:1px solid var(--line);border-radius:22px;box-shadow:0 18px 48px rgba(0,0,0,.08)}
+.iphone-gallery figcaption{margin-top:12px;color:var(--quiet);font-size:14px;line-height:1.45;text-align:center}
+.ipad-showcase-heading{margin-top:72px;padding-top:56px;border-top:1px solid var(--line)}
+.ipad-showcase-heading .kicker{margin-bottom:10px}
+.ipad-showcase-heading h3{font-size:clamp(30px,3.5vw,46px);line-height:1.08}
+.dual-visual.ipad-showcase{margin-top:32px}
+.dual-visual.ipad-showcase img{box-shadow:none;border-radius:24px}
+@media(max-width:820px){.air-device-showcase{grid-template-columns:1fr;grid-template-rows:auto;row-gap:34px}.air-device{display:block;grid-row:auto}.air-device img{width:auto;max-width:100%;max-height:680px;margin-inline:auto}.air-device figcaption{margin-top:12px}.iphone-gallery{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;padding:0 2px 14px}.iphone-gallery figure{flex:0 0 min(72vw,280px);scroll-snap-align:center}}
 
 .product-visual.final-hero-image{margin-top:0}
 .product-visual.final-hero-image img{border-radius:30px;box-shadow:0 30px 90px rgba(0,0,0,.11)}
