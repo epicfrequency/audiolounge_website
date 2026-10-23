@@ -1614,7 +1614,7 @@ body{overflow-x:hidden}
 .iphone-teaser-inner{display:grid;grid-template-columns:.9fr 1.1fr;gap:60px;align-items:center}
 .iphone-teaser-copy{max-width:720px}.iphone-teaser-copy .kicker{color:#70b7ff}.iphone-teaser-copy h1,.iphone-teaser-copy h2{font-size:clamp(54px,6.5vw,92px)}.iphone-teaser-copy .lede{color:#a1a1a6;max-width:690px}
 .iphone-coming-badge{display:inline-flex;margin-top:32px;padding:10px 16px;border:1px solid rgba(112,183,255,.3);border-radius:999px;background:rgba(0,113,227,.13);color:#8bc5ff;font-size:14px;font-weight:700;letter-spacing:-.01em}
-.iphone-teaser-previews{display:grid;grid-template-columns:.7fr 1.3fr;gap:22px;align-items:center;width:min(650px,100%);margin:0 auto}
+.iphone-teaser-previews{display:grid;grid-template-columns:.7fr 1.3fr;gap:22px;align-items:end;width:min(650px,100%);margin:0 auto}
 .iphone-teaser-preview{min-width:0;margin:0;text-align:center}
 .iphone-teaser-preview img{width:100%;height:auto;box-shadow:0 38px 100px rgba(0,0,0,.55),0 0 0 1px rgba(255,255,255,.1)}
 .iphone-teaser-preview-standard img{border-radius:34px}.iphone-teaser-preview-duo img{border-radius:0;box-shadow:none;filter:drop-shadow(0 38px 54px rgba(0,0,0,.5))}
