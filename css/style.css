@@ -1616,10 +1616,10 @@ body{overflow-x:hidden}
 .iphone-teaser-previews{display:grid;grid-template-columns:.7fr 1.3fr;gap:22px;align-items:center;width:min(650px,100%);margin:0 auto}
 .iphone-teaser-preview{min-width:0;margin:0;text-align:center}
 .iphone-teaser-preview img{width:100%;height:auto;box-shadow:0 38px 100px rgba(0,0,0,.55),0 0 0 1px rgba(255,255,255,.1)}
-.iphone-teaser-preview-standard img{border-radius:34px}.iphone-teaser-preview-duo img{border-radius:28px}
+.iphone-teaser-preview-standard img{border-radius:34px}.iphone-teaser-preview-duo img{border-radius:0;box-shadow:none;filter:drop-shadow(0 38px 54px rgba(0,0,0,.5))}
 .iphone-teaser-preview figcaption{margin-top:18px;color:#86868b;font-size:13px;letter-spacing:-.01em}
 @media(max-width:1000px){.iphone-teaser-inner{grid-template-columns:1fr;gap:70px;text-align:center}.iphone-teaser-copy{margin-inline:auto}.iphone-teaser-copy .lede{margin-inline:auto}.iphone-teaser-previews{width:min(680px,100%)}}
-@media(max-width:560px){.iphone-teaser{padding:96px 0}.iphone-teaser-previews{grid-template-columns:.68fr 1.32fr;gap:10px}.iphone-teaser-preview-standard img{border-radius:22px}.iphone-teaser-preview-duo img{border-radius:18px}.iphone-teaser-preview figcaption{font-size:11px;line-height:1.3}.iphone-coming-badge{line-height:1.35}}
+@media(max-width:560px){.iphone-teaser{padding:96px 0}.iphone-teaser-previews{grid-template-columns:.68fr 1.32fr;gap:10px}.iphone-teaser-preview-standard img{border-radius:22px}.iphone-teaser-preview-duo img{border-radius:0}.iphone-teaser-preview figcaption{font-size:11px;line-height:1.3}.iphone-coming-badge{line-height:1.35}}
 
 
 /* HALO native DSD / bit-perfect emphasis */
