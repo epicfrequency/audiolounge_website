@@ -1388,6 +1388,7 @@ body{overflow-x:hidden}
 
 .air-panel.final-air{padding:92px 42px}
 .air-panel.final-air .air-lines{font-size:21px}
+.air-download-actions{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin-top:18px}
 .iphone-gallery-heading{margin-top:72px;padding-top:56px;border-top:1px solid var(--line)}
 .iphone-gallery-heading .kicker{margin-bottom:10px}
 .iphone-gallery-heading h3{font-size:clamp(30px,3.5vw,46px);line-height:1.08}
