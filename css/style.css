@@ -1644,12 +1644,18 @@ body{overflow-x:hidden}
 
 
 /* Four platforms in the same order as the cover headline. */
-.iphone-teaser-headline .iphone-teaser-inner{grid-template-columns:1fr;gap:64px}
-.iphone-teaser-headline .iphone-teaser-copy{max-width:900px}
+.iphone-teaser-headline .iphone-teaser-inner{grid-template-columns:1fr;gap:48px}
+.iphone-teaser-headline .iphone-teaser-copy{width:100%;max-width:1100px;margin-inline:auto;text-align:center}
+.iphone-teaser-headline .iphone-teaser-copy h1{font-size:clamp(40px,5.2vw,76px);line-height:1.06;letter-spacing:-.055em;text-wrap:balance}
+.iphone-teaser-headline .iphone-teaser-copy .lede{max-width:760px;margin-inline:auto;font-size:clamp(17px,1.5vw,20px);line-height:1.55}
+.iphone-teaser-headline .iphone-coming-badge{margin-top:24px}
+.iphone-teaser-headline{padding-bottom:80px}
 .platform-previews{grid-template-columns:1.5fr 1.2fr .36fr .62fr;gap:28px;width:100%;max-width:none;align-items:end}
-.platform-previews .iphone-teaser-preview{grid-template-rows:1fr 48px;width:100%;align-self:end}
+.platform-previews .iphone-teaser-preview{grid-template-rows:1fr 72px;width:100%;align-self:end}
 .platform-previews .iphone-teaser-preview-standard img{transform:none}
-.platform-previews .iphone-teaser-preview figcaption{margin-top:18px;white-space:normal;text-wrap:balance}
+.platform-previews .iphone-teaser-preview figcaption{height:auto;margin-top:20px;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;gap:5px;white-space:normal;text-wrap:balance;line-height:1.4}
+.platform-previews figcaption strong{font-size:14px;font-weight:600;color:#c7c7cc;white-space:nowrap}
+.platform-previews figcaption span{font-size:12px;color:#86868b}
 /* Screen ratios follow 13.6-inch MacBook Air and 13-inch iPad Pro. */
 .platform-mac{padding-top:4px;filter:drop-shadow(0 18px 25px rgba(0,0,0,.4))}
 .platform-mac-screen{position:relative;width:92%;margin:auto;padding:1.5% 1.5% 2%;border:1px solid #626269;border-radius:14px 14px 5px 5px;background:#111113;overflow:hidden}
