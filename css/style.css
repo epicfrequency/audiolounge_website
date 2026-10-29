@@ -1643,14 +1643,17 @@ body{overflow-x:hidden}
 @media(max-width:560px){.iphone-teaser{padding:96px 0}.iphone-teaser-previews{grid-template-columns:.82fr 1.3fr;gap:10px}.iphone-teaser-preview-standard img,.iphone-teaser-preview-duo img{border-radius:0}.iphone-teaser-preview figcaption{font-size:11px;line-height:1.3}.iphone-coming-badge{line-height:1.35}}
 
 
-/* Four platforms in the same order as the cover headline. */
+/* Shared screen scale: Mac 13-inch, iPad 11-inch.
+   Width = diagonal * aspect / sqrt(1 + aspect^2), adjusted for each frame's
+   visible screen fraction. Duo (~8-inch) and phone (~6.3-inch) are estimates
+   for the supplied mockups, not verified hardware specifications. */
 .iphone-teaser-headline .iphone-teaser-inner{grid-template-columns:1fr;gap:48px}
 .iphone-teaser-headline .iphone-teaser-copy{width:100%;max-width:1100px;margin-inline:auto;text-align:center}
 .iphone-teaser-headline .iphone-teaser-copy h1{font-size:clamp(40px,5.2vw,76px);line-height:1.06;letter-spacing:-.055em;text-wrap:balance}
 .iphone-teaser-headline .iphone-teaser-copy .lede{max-width:760px;margin-inline:auto;font-size:clamp(17px,1.5vw,20px);line-height:1.55}
 .iphone-teaser-headline .iphone-coming-badge{margin-top:24px}
 .iphone-teaser-headline{padding-bottom:80px}
-.platform-previews{grid-template-columns:1.5fr 1.2fr .36fr .62fr;gap:28px;width:100%;max-width:none;align-items:end}
+.platform-previews{grid-template-columns:13.38fr 9.75fr 5.4fr 3.1fr;gap:28px;width:100%;max-width:none;align-items:end}
 .platform-previews .iphone-teaser-preview{grid-template-rows:1fr 72px;width:100%;align-self:end}
 .platform-previews .iphone-teaser-preview-standard img{transform:none}
 .platform-previews .iphone-teaser-preview figcaption{height:auto;margin-top:20px;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;gap:5px;white-space:normal;text-wrap:balance;line-height:1.4}
@@ -1664,9 +1667,9 @@ body{overflow-x:hidden}
 .platform-mac-display:after{content:"";position:absolute;top:0;left:44.7%;width:10.6%;height:2.9%;background:#08090a;border-radius:0 0 4px 4px}
 .platform-ipad{position:relative;padding:3.4%;border:1px solid #808087;border-radius:24px;background:#101012;box-shadow:inset 0 0 0 2px #333338,0 18px 35px rgba(0,0,0,.4)}
 .platform-ipad:before{content:"";position:absolute;top:1.4%;left:50%;width:1.2%;aspect-ratio:1;border-radius:50%;background:#182633;box-shadow:0 0 0 1px #292b30;transform:translateX(-50%)}
-.platform-previews .platform-ipad img{width:100%;height:auto;aspect-ratio:4/3;object-fit:cover;object-position:center;border-radius:14px;box-shadow:none;filter:brightness(1.13) contrast(.94)}
+.platform-previews .platform-ipad img{width:100%;height:auto;aspect-ratio:2420/1668;object-fit:cover;object-position:center;border-radius:14px;box-shadow:none;filter:brightness(1.13) contrast(.94)}
 @media(max-width:1000px){.iphone-teaser-headline .iphone-teaser-copy{text-align:center;margin-inline:auto}.platform-previews{gap:18px}.platform-previews .iphone-teaser-preview figcaption{font-size:11px}}
-@media(max-width:700px){.platform-previews{grid-template-columns:1fr 1fr;gap:30px 20px}.platform-previews .iphone-teaser-preview-standard{width:38%;justify-self:center}.platform-previews .iphone-teaser-preview-duo{width:62%;justify-self:center}.platform-previews .iphone-teaser-preview figcaption{white-space:normal}.platform-ipad{border-radius:15px}.platform-previews .platform-ipad img{border-radius:9px}.iphone-teaser-headline .iphone-teaser-inner{gap:44px}}
+@media(max-width:700px){.platform-previews{grid-template-columns:1fr 1fr;gap:30px 20px}.platform-previews .platform-preview-ipad{width:72.87%;justify-self:center}.platform-previews .iphone-teaser-preview-standard{width:23.17%;justify-self:center}.platform-previews .iphone-teaser-preview-duo{width:40.36%;justify-self:center}.platform-previews .iphone-teaser-preview figcaption{white-space:normal}.platform-ipad{border-radius:15px}.platform-previews .platform-ipad img{border-radius:9px}.iphone-teaser-headline .iphone-teaser-inner{gap:44px}}
 
 /* HALO native DSD / bit-perfect emphasis */
 .halo-hero-feature{
