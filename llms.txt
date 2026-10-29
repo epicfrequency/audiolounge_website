@@ -15,7 +15,7 @@
 ## Technical guides
 
 - [How to play SACD ISO on Mac and iPad](https://audiolounge.app/guides/play-sacd-iso-mac-ipad/): Direct SACD ISO playback with Audio Lounge, including DST decoding, Native DSD, NAS and iPad workflows.
-- [How to play DSD on Mac with a USB DAC](https://audiolounge.app/guides/play-dsd-on-mac/): DSD rates, DSF and DFF, Native DSD, DoP, DAC compatibility, and HALO.
+- [How to play DSD on Mac, iPad and iPhone](https://audiolounge.app/guides/play-dsd-on-mac/): DSD rates, DSF and DFF, Native DSD, DoP, DAC compatibility, and HALO.
 - [How to play music from a NAS on Mac and iPad](https://audiolounge.app/guides/play-music-from-nas-mac-ipad/): SMB, SMB Direct, library formats, USB DAC output, and HALO.
 
 ## Product facts
