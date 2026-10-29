@@ -1646,10 +1646,10 @@ body{overflow-x:hidden}
 /* Four platforms in the same order as the cover headline. */
 .iphone-teaser-headline .iphone-teaser-inner{grid-template-columns:1fr;gap:64px}
 .iphone-teaser-headline .iphone-teaser-copy{max-width:900px}
-.platform-previews{grid-template-columns:1.5fr 1.2fr .62fr .95fr;gap:28px;width:100%;max-width:none;align-items:end}
+.platform-previews{grid-template-columns:1.5fr 1.2fr .36fr .62fr;gap:28px;width:100%;max-width:none;align-items:end}
 .platform-previews .iphone-teaser-preview{grid-template-rows:1fr 48px;width:100%;align-self:end}
 .platform-previews .iphone-teaser-preview-standard img{transform:none}
-.platform-previews .iphone-teaser-preview figcaption{margin-top:18px;white-space:nowrap}
+.platform-previews .iphone-teaser-preview figcaption{margin-top:18px;white-space:normal;text-wrap:balance}
 /* Screen ratios follow 13.6-inch MacBook Air and 13-inch iPad Pro. */
 .platform-mac{padding-top:4px;filter:drop-shadow(0 18px 25px rgba(0,0,0,.4))}
 .platform-mac-screen{position:relative;width:92%;margin:auto;padding:1.5% 1.5% 2%;border:1px solid #626269;border-radius:14px 14px 5px 5px;background:#111113;overflow:hidden}
@@ -1661,7 +1661,7 @@ body{overflow-x:hidden}
 .platform-ipad:before{content:"";position:absolute;top:1.4%;left:50%;width:1.2%;aspect-ratio:1;border-radius:50%;background:#182633;box-shadow:0 0 0 1px #292b30;transform:translateX(-50%)}
 .platform-previews .platform-ipad img{width:100%;height:auto;aspect-ratio:4/3;object-fit:cover;object-position:center;border-radius:14px;box-shadow:none}
 @media(max-width:1000px){.iphone-teaser-headline .iphone-teaser-copy{text-align:center;margin-inline:auto}.platform-previews{gap:18px}.platform-previews .iphone-teaser-preview figcaption{font-size:11px}}
-@media(max-width:700px){.platform-previews{grid-template-columns:1fr 1fr;gap:30px 20px}.platform-previews .iphone-teaser-preview-standard{width:60%;justify-self:center}.platform-previews .iphone-teaser-preview-duo{width:88%;justify-self:center}.platform-previews .iphone-teaser-preview figcaption{white-space:normal}.platform-mac-screen{border-radius:9px 9px 3px 3px}.platform-ipad{border-radius:15px}.platform-previews .platform-ipad img{border-radius:9px}.iphone-teaser-headline .iphone-teaser-inner{gap:44px}}
+@media(max-width:700px){.platform-previews{grid-template-columns:1fr 1fr;gap:30px 20px}.platform-previews .iphone-teaser-preview-standard{width:38%;justify-self:center}.platform-previews .iphone-teaser-preview-duo{width:62%;justify-self:center}.platform-previews .iphone-teaser-preview figcaption{white-space:normal}.platform-mac-screen{border-radius:9px 9px 3px 3px}.platform-ipad{border-radius:15px}.platform-previews .platform-ipad img{border-radius:9px}.iphone-teaser-headline .iphone-teaser-inner{gap:44px}}
 
 /* HALO native DSD / bit-perfect emphasis */
 .halo-hero-feature{
