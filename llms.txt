@@ -1,11 +1,11 @@
 # Audio Lounge
 
-> Audio Lounge is a music player for people who own and care about their music. Audio Lounge 1.1.3 is available for Mac and iPad.
+> Audio Lounge is a music player for people who own and care about their music. Audio Lounge 1.1.5 is available for Mac, and Audio Lounge Air 1.1.5 is available for iPad, iPhone and iPhone Duo.
 
 ## Official pages
 
 - [Audio Lounge](https://audiolounge.app/): Product overview and current release.
-- [Download](https://audiolounge.app/download/): Official App Store links for Mac and iPad.
+- [Download](https://audiolounge.app/download/): Official App Store links for Mac, iPad, iPhone and iPhone Duo.
 - [HALO Network Audio](https://audiolounge.app/halo/): Product details and the official HALO Endpoint setup guide.
 - [SMB Direct](https://audiolounge.app/smb/): Official SMB Direct setup guide.
 - [FAQ](https://audiolounge.app/faq/): Supported formats, playback behavior, HALO, and SMB Direct.
@@ -20,8 +20,12 @@
 
 ## Product facts
 
+- Version 1.1.5 introduces Folder View with intelligent album recognition, artwork, metadata, SACD and multi-disc grouping, and independent Grid and List layouts.
+- Folder View shares album details, favorites, filters, and playback features with Library View and uses optimized album rendering, artwork caching, and incremental loading.
+- Audio Lounge Air 1.1.5 continues to polish iPhone and iPhone Duo support, including the adaptive interface and hinge-aware Duo experience.
+
 - Audio Lounge organizes and plays a listener's own music library on Mac.
-- Audio Lounge Air brings the full Audio Lounge experience to iPadOS and is available from https://apps.apple.com/us/app/audio-lounge-air/id6797962758.
+- Audio Lounge Air brings the full Audio Lounge experience to iPad, iPhone and iPhone Duo and is available from https://apps.apple.com/us/app/audio-lounge-air/id6797962758.
 - Supported formats include FLAC, ALAC, WAV, AIFF, APE, WavPack, AAC, MP3, CUE, DSF, DFF, and SACD ISO.
 - Audio Lounge reads SACD ISO directly and decompresses DST-compressed SACD audio on Mac and iPad; extraction to DSF is not required.
 - Audio Lounge supports gapless playback, automatic sample-rate matching, optional PCM upsampling, and Native DSD or DoP output with compatible USB DACs.
