@@ -1654,13 +1654,13 @@ body{overflow-x:hidden}
 .iphone-teaser-headline .iphone-coming-badge{margin-top:24px}
 .iphone-teaser-headline{padding-bottom:80px}
 .platform-previews{grid-template-columns:13.38fr 9.75fr 5.4fr 3.1fr;gap:28px;width:100%;max-width:none;align-items:end}
-.platform-previews .iphone-teaser-preview{grid-template-rows:1fr 72px;width:100%;align-self:end}
+.platform-previews .iphone-teaser-preview{grid-template-rows:1fr 72px;width:100%;align-self:end;container-type:inline-size}
 /* Align the bottom of the visible displays; chassis extend below this line.
    Offsets account for the frame/bezel below each source image's screen. */
 .platform-previews .platform-mac-hardware{transform:translateY(10.53%)}
-.platform-previews .platform-ipad{transform:translateY(4.4%)}
-.platform-previews .iphone-teaser-preview-standard img{transform:translateY(5%)}
-.platform-previews .iphone-teaser-preview-duo img{transform:translateY(6.5%)}
+.platform-previews .platform-ipad{transform:translateY(calc(3.4cqw + 1px))}
+.platform-previews .iphone-teaser-preview-standard img{transform:translateY(3.223916%)}
+.platform-previews .iphone-teaser-preview-duo img{transform:translateY(6.241234%)}
 .platform-previews .iphone-teaser-preview figcaption{height:auto;margin-top:44px;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;gap:5px;white-space:normal;text-wrap:balance;line-height:1.4}
 .platform-previews figcaption strong{font-size:14px;font-weight:600;color:#c7c7cc;white-space:nowrap}
 .platform-previews figcaption span{font-size:12px;color:#86868b}
