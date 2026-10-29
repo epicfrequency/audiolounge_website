@@ -5,7 +5,8 @@
 <description>Notes on music, listening, and Audio Lounge.</description>
 <atom:link href="https://audiolounge.app/feed.xml" rel="self" type="application/rss+xml" />
 <language>en-us</language>
-<lastBuildDate>Sun, 31 Aug 2026 00:00:00 GMT</lastBuildDate>
+<lastBuildDate>Wed, 28 Oct 2026 00:00:00 GMT</lastBuildDate>
+<item><title>Folder View in Audio Lounge 1.1.5</title><link>https://audiolounge.app/blog/folder-view-audio-lounge-1-1-5/</link><guid>https://audiolounge.app/blog/folder-view-audio-lounge-1-1-5/</guid><pubDate>Wed, 28 Oct 2026 00:00:00 GMT</pubDate><description>Your music, your organization—without compromising the library experience.</description></item>
 <item><title>Memory Playback in Audio Lounge 1.1.1</title><link>https://audiolounge.app/blog/memory-playback/</link><guid>https://audiolounge.app/blog/memory-playback/</guid><pubDate>Sun, 31 Aug 2026 00:00:00 GMT</pubDate><description>Inside the rewritten, memory-buffered engine behind stable Hi-Res, DSD, NAS, USB DAC and HALO playback.</description></item>
 <item><title>HALO, Roon, UPnP, HQPlayer and Diretta</title><link>https://audiolounge.app/blog/halo-network-audio-compared/</link><guid>https://audiolounge.app/blog/halo-network-audio-compared/</guid><pubDate>Sun, 31 Aug 2026 00:00:00 GMT</pubDate><description>Five network-audio architectures, five priorities—and why HALO is built directly into Audio Lounge.</description></item>
 <item><title>Introducing Audio Lounge 1.1</title><link>https://audiolounge.app/blog/introducing-audio-lounge-1-1/</link><guid>https://audiolounge.app/blog/introducing-audio-lounge-1-1/</guid><pubDate>Wed, 12 Aug 2026 00:00:00 GMT</pubDate><description>Why SMB Direct, HALO Network Audio, and Audio Lounge Air belong together.</description></item>
