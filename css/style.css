@@ -1661,8 +1661,10 @@ body{overflow-x:hidden}
 .platform-mac-screen{position:relative;width:92%;margin:auto;padding:1.5% 1.5% 2%;border:1px solid #626269;border-radius:14px 14px 5px 5px;background:#111113;overflow:hidden}
 .platform-mac-screen:after{content:"";position:absolute;top:1.5%;left:44%;width:12%;height:4%;border-radius:0 0 5px 5px;background:#111113}
 .platform-previews .platform-mac-screen img{width:100%;height:auto;aspect-ratio:2560/1664;object-fit:cover;object-position:center;border-radius:6px 6px 2px 2px;box-shadow:none}
-.platform-mac-base{position:relative;height:0;padding-bottom:4%;border-radius:1px 1px 50% 50% / 1px 1px 65% 65%;background:linear-gradient(#c4c4c9 0%,#929299 30%,#55555c 75%,#303035 100%);border-top:1px solid #dedee3}
-.platform-mac-base span{position:absolute;top:0;left:43%;width:14%;height:28%;border-radius:0 0 6px 6px;background:linear-gradient(#66666e,#aaaab1)}
+.platform-mac-base{position:relative;aspect-ratio:9/1;border-radius:2px 2px 9px 9px;background:linear-gradient(#8d8d96,#c5c5cc 72%,#8b8b94 74%,#55555e 90%,#303036);border-top:1px solid #e1e1e6;clip-path:polygon(4% 0,96% 0,100% 82%,99% 94%,95% 100%,5% 100%,1% 94%,0 82%)}
+.platform-mac-base:before{content:"";position:absolute;top:8%;left:17%;width:66%;height:38%;border:2px solid #55555e;border-radius:2px;background:repeating-linear-gradient(0deg,transparent 0 24%,#8e8e98 24% 30%),repeating-linear-gradient(90deg,#222227 0 5.3%,#8e8e98 5.3% 6.2%);transform:perspective(120px) rotateX(25deg)}
+.platform-mac-base:after{content:"";position:absolute;top:52%;left:38%;width:24%;height:25%;border:1px solid #85858e;border-radius:3px;background:linear-gradient(#b3b3bc,#c2c2ca)}
+.platform-mac-base span{position:absolute;bottom:2%;left:43%;width:14%;height:8%;border-radius:0 0 4px 4px;background:#55555d}
 .platform-ipad{position:relative;padding:3.4%;border:1px solid #808087;border-radius:24px;background:#101012;box-shadow:inset 0 0 0 2px #333338,0 18px 35px rgba(0,0,0,.4)}
 .platform-ipad:before{content:"";position:absolute;top:1.4%;left:50%;width:1.2%;aspect-ratio:1;border-radius:50%;background:#182633;box-shadow:0 0 0 1px #292b30;transform:translateX(-50%)}
 .platform-previews .platform-ipad img{width:100%;height:auto;aspect-ratio:4/3;object-fit:cover;object-position:center;border-radius:14px;box-shadow:none}
