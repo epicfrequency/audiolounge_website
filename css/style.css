@@ -1655,14 +1655,19 @@ body{overflow-x:hidden}
 .iphone-teaser-headline{padding-bottom:80px}
 .platform-previews{grid-template-columns:13.38fr 9.75fr 5.4fr 3.1fr;gap:28px;width:100%;max-width:none;align-items:end}
 .platform-previews .iphone-teaser-preview{grid-template-rows:1fr 72px;width:100%;align-self:end}
-.platform-previews .iphone-teaser-preview-standard img{transform:none}
-.platform-previews .iphone-teaser-preview figcaption{height:auto;margin-top:20px;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;gap:5px;white-space:normal;text-wrap:balance;line-height:1.4}
+/* Align the bottom of the visible displays; chassis extend below this line.
+   Offsets account for the frame/bezel below each source image's screen. */
+.platform-previews .platform-mac-hardware{transform:translateY(10.53%)}
+.platform-previews .platform-ipad{transform:translateY(4.4%)}
+.platform-previews .iphone-teaser-preview-standard img{transform:translateY(5%)}
+.platform-previews .iphone-teaser-preview-duo img{transform:translateY(6.5%)}
+.platform-previews .iphone-teaser-preview figcaption{height:auto;margin-top:44px;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;gap:5px;white-space:normal;text-wrap:balance;line-height:1.4}
 .platform-previews figcaption strong{font-size:14px;font-weight:600;color:#c7c7cc;white-space:nowrap}
 .platform-previews figcaption span{font-size:12px;color:#86868b}
 /* Apple front-view hardware, cropped above its numbered annotation. */
 .platform-mac-hardware{position:relative;aspect-ratio:1012/617;overflow:hidden;filter:drop-shadow(0 15px 20px rgba(0,0,0,.35))}
 .platform-previews .platform-mac-photo{position:absolute;top:-9.887%;left:0;width:100%;height:auto;max-width:none;box-shadow:none;z-index:1}
-.platform-mac-display{position:absolute;left:9.19%;top:2.92%;width:81.52%;height:86.55%;overflow:hidden;border-radius:1.4% 1.4% 0 0;z-index:2}
+.platform-mac-display{position:absolute;left:9.19%;top:2.92%;width:81.52%;height:86.55%;overflow:hidden;border-radius:1.5% 1.5% 0 0 / 2.3% 2.3% 0 0;z-index:2}
 .platform-previews .platform-mac-display img{width:100%;height:100%;object-fit:cover;object-position:center;box-shadow:none;filter:brightness(1.13) contrast(.94)}
 .platform-mac-display:after{content:"";position:absolute;top:0;left:44.7%;width:10.6%;height:2.9%;background:#08090a;border-radius:0 0 4px 4px}
 .platform-ipad{position:relative;padding:3.4%;border:1px solid #808087;border-radius:24px;background:#101012;box-shadow:inset 0 0 0 2px #333338,0 18px 35px rgba(0,0,0,.4)}
