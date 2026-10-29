@@ -1643,15 +1643,19 @@ body{overflow-x:hidden}
 @media(max-width:560px){.iphone-teaser{padding:96px 0}.iphone-teaser-previews{grid-template-columns:.82fr 1.3fr;gap:10px}.iphone-teaser-preview-standard img,.iphone-teaser-preview-duo img{border-radius:0}.iphone-teaser-preview figcaption{font-size:11px;line-height:1.3}.iphone-coming-badge{line-height:1.35}}
 
 
-/* All-platform cover: Mac and iPad above the two phone previews. */
-.platform-previews{gap:22px 28px;max-width:620px}
-.platform-preview-desktop{grid-column:1/-1;grid-template-rows:auto 36px}
-.platform-desktop-frame{padding:8px;border:1px solid rgba(255,255,255,.2);border-radius:18px;background:#19191c;box-shadow:0 24px 60px rgba(0,0,0,.35);overflow:hidden}
-.platform-desktop-frame img{border-radius:11px;box-shadow:none}
-.platform-previews .iphone-teaser-preview-standard,.platform-previews .iphone-teaser-preview-duo{width:78%;justify-self:center}
+/* Four platforms in the same order as the cover headline. */
+.iphone-teaser-headline .iphone-teaser-inner{grid-template-columns:1fr;gap:64px}
+.iphone-teaser-headline .iphone-teaser-copy{max-width:900px}
+.platform-previews{grid-template-columns:1.5fr 1.2fr .62fr .95fr;gap:28px;width:100%;max-width:none;align-items:end}
+.platform-previews .iphone-teaser-preview{grid-template-rows:1fr 48px;width:100%;align-self:end}
 .platform-previews .iphone-teaser-preview-standard img{transform:none}
-.platform-previews .iphone-teaser-preview figcaption{margin-top:12px}
-@media(max-width:560px){.platform-previews{gap:18px 12px}.platform-desktop-frame{padding:5px;border-radius:12px}.platform-desktop-frame img{border-radius:7px}.platform-previews .iphone-teaser-preview-standard,.platform-previews .iphone-teaser-preview-duo{width:88%}}
+.platform-previews .iphone-teaser-preview figcaption{margin-top:18px;white-space:nowrap}
+.platform-mac-screen{padding:9px 9px 22px;border:1px solid #424247;border-radius:15px;background:#19191c;overflow:hidden;box-shadow:0 24px 60px rgba(0,0,0,.35)}
+.platform-mac-screen img,.platform-ipad img{border-radius:5px;box-shadow:none}
+.platform-mac-stand{width:30%;height:48px;margin:auto;background:linear-gradient(90deg,#57575b,#b0b0b4 50%,#646469);clip-path:polygon(22% 0,78% 0,83% 83%,100% 92%,100% 100%,0 100%,0 92%,17% 83%)}
+.platform-ipad{padding:12px;border:1px solid #55555b;border-radius:20px;background:#151517;box-shadow:0 24px 60px rgba(0,0,0,.35)}
+@media(max-width:1000px){.iphone-teaser-headline .iphone-teaser-copy{text-align:center;margin-inline:auto}.platform-previews{gap:18px}.platform-previews .iphone-teaser-preview figcaption{font-size:11px}.platform-mac-stand{height:36px}}
+@media(max-width:700px){.platform-previews{grid-template-columns:1fr 1fr;gap:30px 20px}.platform-previews .iphone-teaser-preview-standard{width:60%;justify-self:center}.platform-previews .iphone-teaser-preview-duo{width:88%;justify-self:center}.platform-previews .iphone-teaser-preview figcaption{white-space:normal}.platform-mac-screen{padding:6px 6px 15px;border-radius:11px}.platform-ipad{padding:8px;border-radius:14px}.iphone-teaser-headline .iphone-teaser-inner{gap:44px}}
 
 /* HALO native DSD / bit-perfect emphasis */
 .halo-hero-feature{
