@@ -1652,6 +1652,9 @@ body{overflow-x:hidden}
 .iphone-teaser-headline .iphone-teaser-copy h1{font-size:clamp(40px,5.2vw,76px);line-height:1.06;letter-spacing:-.055em;text-wrap:balance}
 .iphone-teaser-headline .iphone-teaser-copy .lede{max-width:760px;margin-inline:auto;font-size:clamp(17px,1.5vw,20px);line-height:1.55}
 .iphone-teaser-headline .iphone-coming-badge{margin-top:24px}
+.cover-download-actions{margin:28px 0 32px}
+.iphone-teaser .cover-download-actions .button-secondary{background:transparent;border:1px solid #70b7ff;color:#8bc5ff}
+.iphone-teaser .cover-download-actions .button-secondary:hover{background:rgba(112,183,255,.12)}
 .iphone-teaser-headline{padding-bottom:80px}
 .platform-previews{grid-template-columns:13.38fr 9.75fr 5.4fr 3.1fr;gap:28px;width:100%;max-width:none;align-items:end}
 .platform-previews .iphone-teaser-preview{grid-template-rows:1fr 72px;width:100%;align-self:end;container-type:inline-size}
