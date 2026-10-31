@@ -5,12 +5,31 @@
   "assets": {
     "directory": ".",
     "binding": "ASSETS",
-    "run_worker_first": ["/halo/releases/*"]
+    "run_worker_first": [
+      "/halo/releases/*",
+      "/api/feedback*"
+    ]
   },
   "analytics_engine_datasets": [
     {
       "binding": "HALO_DOWNLOADS",
       "dataset": "halo_downloads"
+    }
+  ],
+  "durable_objects": {
+    "bindings": [
+      {
+        "name": "FEEDBACK",
+        "class_name": "FeedbackBoard"
+      }
+    ]
+  },
+  "migrations": [
+    {
+      "tag": "feedback-v1",
+      "new_sqlite_classes": [
+        "FeedbackBoard"
+      ]
     }
   ]
 }

@@ -6,4 +6,7 @@ node_modules
 **/.DS_Store
 .wrangler
 **/.wrangler
-src/worker.mjs
+src/
+
+tests/
+FEEDBACK_SETUP.md

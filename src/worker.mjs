@@ -1,7 +1,11 @@
+import { feedback } from "./feedback.mjs";
+export { FeedbackBoard } from "./feedback.mjs";
+
 const HALO_BINARY_PATH = /^\/halo\/releases\/([^/]+)\/halo-daemon-linux-(arm64|x86_64)$/;
 
 export default {
   async fetch(request, env) {
+    if (new URL(request.url).pathname.startsWith("/api/feedback")) return feedback(request, env);
     const response = await env.ASSETS.fetch(request);
     const url = new URL(request.url);
     const match = HALO_BINARY_PATH.exec(url.pathname);
