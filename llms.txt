@@ -1,6 +1,6 @@
 # Audio Lounge
 
-> Audio Lounge is a music player for people who own and care about their music. Audio Lounge 1.1.5 is available for Mac, and Audio Lounge Air 1.1.5 is available for iPad, iPhone and iPhone Duo.
+> Audio Lounge is a music player for people who own and care about their music. Audio Lounge 1.1.6 is available for Mac, and Audio Lounge Air 1.1.6 is available for iPad, iPhone and iPhone Duo.
 
 ## Official pages
 
@@ -23,7 +23,7 @@
 - Version 1.1.6 is now available with stability improvements.
 - Version 1.1.5 introduces Folder View with intelligent album recognition, artwork, metadata, SACD and multi-disc grouping, and independent Grid and List layouts.
 - Folder View shares album details, favorites, filters, and playback features with Library View and uses optimized album rendering, artwork caching, and incremental loading.
-- Audio Lounge Air 1.1.5 continues to polish iPhone and iPhone Duo support, including the adaptive interface and hinge-aware Duo experience.
+- Audio Lounge Air 1.1.6 continues to polish iPhone and iPhone Duo support, including the adaptive interface and hinge-aware Duo experience.
 
 - Audio Lounge organizes and plays a listener's own music library on Mac.
 - Audio Lounge Air brings the full Audio Lounge experience to iPad, iPhone and iPhone Duo and is available from https://apps.apple.com/us/app/audio-lounge-air/id6797962758.
