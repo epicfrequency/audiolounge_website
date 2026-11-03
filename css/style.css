@@ -1724,3 +1724,8 @@ body{overflow-x:hidden}
 @media(max-width:560px){.nativebits-hero{padding-top:90px}.nativebits-workspace{padding-inline:10px;padding-bottom:90px}.nativebits-editor-head{align-items:flex-start;flex-direction:column;gap:14px}.nativebits-tracks li{grid-template-columns:30px 1fr auto}.nativebits-steps{grid-template-columns:1fr}.nativebits-steps article{min-height:auto}}
 .nativebits-policy h2,.nativebits-support h2{font-size:30px}.nativebits-policy .contact-panel h2{color:#fff}.nativebits-support-grid{grid-template-columns:repeat(3,1fr)}.nativebits-support a:not(.button):not(.support-card){color:#18864b}.nativebits-help-notes{margin-top:30px;border-top:1px solid var(--line)}.nativebits-help-notes article{display:grid;grid-template-columns:240px 1fr;gap:30px;padding:22px 0;border-bottom:1px solid var(--line)}.nativebits-help-notes span{color:var(--muted);line-height:1.55}.nativebits-response-note{margin-top:24px!important;color:var(--quiet)!important;font-size:14px!important}
 @media(max-width:820px){.nativebits-support-grid{grid-template-columns:1fr}.nativebits-help-notes article{grid-template-columns:1fr;gap:6px}}
+
+/* Subtle separation for screenshots displayed on light surfaces. */
+.light-screenshot {
+  box-shadow: 0 0 0 1px rgba(28, 36, 46, .36), 0 5px 16px rgba(28, 36, 46, .08);
+}
