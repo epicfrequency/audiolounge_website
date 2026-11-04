@@ -1653,7 +1653,7 @@ body{overflow-x:hidden}
 .iphone-teaser-headline .iphone-teaser-copy .lede{max-width:760px;margin-inline:auto;font-size:clamp(17px,1.5vw,20px);line-height:1.55}
 .iphone-teaser-headline .iphone-coming-badge{margin-top:24px}
 /* Compact announcement on the dark homepage hero. */
-.hero-news{margin:26px 0 0;font-size:15px;line-height:1.5}
+.hero-news{display:flex;flex-wrap:wrap;justify-content:center;gap:4px 24px;margin:26px 0 0;font-size:15px;line-height:1.5}
 .hero-news a{display:inline-flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:6px 14px;max-width:100%;padding:6px 0;color:#70b7ff}
 .hero-news-label{color:#a1a1a6;font-weight:400}
 .hero-news-title{font-weight:600}
