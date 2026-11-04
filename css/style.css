@@ -1392,7 +1392,7 @@ body{overflow-x:hidden}
 .iphone-gallery-heading{margin-top:72px;padding-top:56px;border-top:1px solid var(--line)}
 .iphone-gallery-heading .kicker{margin-bottom:10px}
 .iphone-gallery-heading h3{font-size:clamp(30px,3.5vw,46px);line-height:1.08}
-.iphone-gallery{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;margin-top:32px}
+.iphone-gallery{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:22px;margin-top:32px}
 .iphone-gallery figure{margin:0;min-width:0}
 .iphone-gallery img{display:block;width:100%;height:auto;border:1px solid var(--line);border-radius:22px;box-shadow:0 18px 48px rgba(0,0,0,.08)}
 .iphone-gallery figcaption{margin-top:12px;color:var(--quiet);font-size:14px;line-height:1.45;text-align:center}
